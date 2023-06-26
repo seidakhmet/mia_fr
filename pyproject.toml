@@ -1,0 +1,58 @@
+[tool.poetry]
+name = "mia-fr"
+version = "0.1.0"
+description = ""
+authors = ["Azat Seidakhmet"]
+readme = "README.md"
+packages = [
+    {include = "apps", from="src"},
+    {include = "config", from="src"},
+]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+django = "^4.2.1"
+psycopg2-binary = "^2.9.6"
+ipython = "^8.14.0"
+django-environ = "^0.10.0"
+pillow = "^9.5.0"
+requests = "^2.31.0"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.3.0"
+ruff = "^0.0.270"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 120
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".hg",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "venv",
+    "__init__.py",
+]

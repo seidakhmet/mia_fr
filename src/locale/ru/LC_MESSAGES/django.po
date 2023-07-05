@@ -1,0 +1,270 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-07-04 18:52+0600\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
+#: src/apps/common/mixins/models.py:10 src/apps/common/mixins/models.py:23
+msgid "Created time"
+msgstr "Время создания"
+
+#: src/apps/common/mixins/models.py:13 src/apps/common/mixins/models.py:29
+msgid "Last change time"
+msgstr "Время последнего изменения"
+
+#: src/apps/common/mixins/models.py:33 src/apps/persons/models.py:104
+msgid "First name"
+msgstr "Имя"
+
+#: src/apps/common/mixins/models.py:34 src/apps/persons/models.py:106
+msgid "Last name"
+msgstr "Фамилия"
+
+#: src/apps/common/mixins/models.py:35 src/apps/persons/models.py:105
+msgid "Middle name"
+msgstr "Отчество"
+
+#: src/apps/common/mixins/models.py:46
+msgid "UUID identification"
+msgstr "UUID идентификатор"
+
+#: src/apps/persons/admin.py:35 src/apps/persons/admin.py:51
+#: src/apps/persons/admin.py:106 src/apps/persons/admin.py:177
+#: src/apps/persons/admin.py:226
+msgid "(No photo)"
+msgstr "(Нет фото)"
+
+#: src/apps/persons/admin.py:37 src/apps/persons/admin.py:53
+#: src/apps/persons/admin.py:108 src/apps/persons/admin.py:179
+#: src/apps/persons/models.py:102
+msgid "Photo"
+msgstr "Фото"
+
+#: src/apps/persons/admin.py:119 src/apps/persons/admin.py:132
+#: src/apps/persons/admin.py:239
+msgid "(No image)"
+msgstr "(Нет изображения)"
+
+#: src/apps/persons/admin.py:121 src/apps/persons/models.py:83
+#: src/apps/persons/models.py:99
+msgid "Detected face"
+msgstr "Обнаруженное лицо"
+
+#: src/apps/persons/admin.py:134 src/apps/persons/admin.py:241
+#: src/apps/persons/models.py:57 src/apps/persons/models.py:73
+msgid "Original image"
+msgstr "Загруженное фото"
+
+#: src/apps/persons/admin.py:228
+msgid "Face"
+msgstr "Лицо"
+
+#: src/apps/persons/admin.py:301
+msgid "Face detection and recognition was started for original image: "
+msgstr "Запущено обнаружение и распознавание лиц для загруженного фото: "
+
+#: src/apps/persons/admin.py:303
+msgid "Run face recognition"
+msgstr "Запустить распознавание лиц"
+
+#: src/apps/persons/admin.py:304
+msgid "Run face recognition for the original image"
+msgstr "Запустить распознавание лиц для загруженного фото"
+
+#: src/apps/persons/models.py:18
+msgid "Created by"
+msgstr "Кем создано"
+
+#: src/apps/persons/models.py:25 src/apps/persons/models.py:41
+msgid "Face recognition request"
+msgstr "Запрос на распознавание лиц"
+
+#: src/apps/persons/models.py:26
+msgid "Face recognition requests"
+msgstr "Запросы на распознавание лиц"
+
+#: src/apps/persons/models.py:44 src/apps/persons/models.py:75
+msgid "Image"
+msgstr "Изображение"
+
+#: src/apps/persons/models.py:45
+msgid "Identity of result"
+msgstr "Идентификатор результата"
+
+#: src/apps/persons/models.py:47
+msgid "Path to results folder"
+msgstr "Путь в директорию результатов"
+
+#: src/apps/persons/models.py:50
+msgid "Face identities"
+msgstr "Идентификаторы лиц"
+
+#: src/apps/persons/models.py:58
+msgid "Original images"
+msgstr "Загруженные фото"
+
+#: src/apps/persons/models.py:76
+msgid "Face identity"
+msgstr "Идентификатор лица"
+
+#: src/apps/persons/models.py:84
+msgid "Detected faces"
+msgstr "Обнаруженные лица"
+
+#: src/apps/persons/models.py:103
+msgid "Distance"
+msgstr "Совпадение"
+
+#: src/apps/persons/models.py:107
+msgid "Individual identification number"
+msgstr "ИИН"
+
+#: src/apps/persons/models.py:108
+msgid "ID number"
+msgstr "Номер уд.лич."
+
+#: src/apps/persons/models.py:119
+msgid "Similar person"
+msgstr "Похожая личность"
+
+#: src/apps/persons/models.py:120
+msgid "Similar persons"
+msgstr "Похожие личности"
+
+#: src/apps/users/__init__.py:6
+msgid "SIMPLE"
+msgstr "Обычный"
+
+#: src/apps/users/__init__.py:7
+msgid "MODERATORS"
+msgstr "Модераторы"
+
+#: src/apps/users/admin.py:19
+msgid "Personal info"
+msgstr "Личная информация"
+
+#: src/apps/users/admin.py:29
+msgid "Permissions"
+msgstr "Права"
+
+#: src/apps/users/admin.py:40
+msgid "Important dates"
+msgstr "Важные даты"
+
+#: src/apps/users/admin.py:66
+msgid "groups"
+msgstr "группы"
+
+#: src/apps/users/models.py:21
+msgid "Group type"
+msgstr "Тип группы"
+
+#: src/apps/users/models.py:28
+msgid "Group extra data"
+msgstr "Экстра данные группы"
+
+#: src/apps/users/models.py:29
+msgid "Group extra datas"
+msgstr "Экстра данные группы"
+
+#: src/apps/users/models.py:39
+msgid "Is developer"
+msgstr "Разработчик"
+
+#: src/apps/users/models.py:42
+msgid "User"
+msgstr "Пользователь"
+
+#: src/apps/users/models.py:43
+msgid "Users"
+msgstr "Пользователи"
+
+#: src/config/settings/base.py:141
+msgid "Kazakh language"
+msgstr "Казахский язык"
+
+#: src/config/settings/base.py:142
+msgid "Russian language"
+msgstr "Русский язык"
+
+#: src/config/settings/base.py:143
+msgid "English language"
+msgstr "Английский язык"
+
+#: src/config/settings/base.py:199
+msgid "Welcome to the SAQ"
+msgstr "Добро пожаловать в SAQ"
+
+#: src/config/settings/base.py:201
+msgid "TOO TNS SERVICE"
+msgstr "TOO TNS SERVICE"
+
+#: src/config/settings/base.py:213
+msgid "Home"
+msgstr "Главная"
+
+#: src/templates/admin/base.html:96
+msgid "Search"
+msgstr "Поиск"
+
+#: src/templates/admin/base.html:157
+msgid "Account"
+msgstr "Аккаунт"
+
+#: src/templates/admin/base.html:160
+msgid "Change password"
+msgstr "Сменить пароль"
+
+#: src/templates/admin/base.html:164
+msgid "Log out"
+msgstr "Выйти"
+
+#: src/templates/admin/base.html:175
+msgid "See Profile"
+msgstr "Профайл"
+
+#: src/templates/admin/base.html:215
+msgid "Dashboard"
+msgstr "Панель"
+
+#: src/templates/admin/base.html:327
+msgid "Copyright"
+msgstr "Copyright"
+
+#: src/templates/admin/base.html:327
+msgid "All rights reserved."
+msgstr "Все права защищены."
+
+#: src/templates/admin/base.html:343
+msgid "UI Configuration"
+msgstr "UI Конфигурация"
+
+#: src/templates/admin/base.html:347
+msgid "Copy this info your settings file to persist these UI changes"
+msgstr "Скопируйте эту информацию в ваш файл настроек для сохранения UI изменений"
+
+#: src/templates/admin/base.html:351
+msgid "Close"
+msgstr "Закрыть"
+
+msgid "Face recognition"
+msgstr "Распознавание лиц"
+
+msgid "Thanks for spending some quality time with the Web site today."
+msgstr "Спасибо за использование сервиса."
+

@@ -49,7 +49,7 @@ class UserAdmin(auth_admin.UserAdmin):
         ),
     )
     ordering = ("username",)
-    readonly_fields = ("username", "last_login", "created_at", "changed_at")
+    readonly_fields = ("last_login", "created_at", "changed_at")
     list_display = ("username", "email", "user_groups")
     search_fields = (
         "username",

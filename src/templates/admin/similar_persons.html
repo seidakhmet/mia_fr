@@ -1,0 +1,25 @@
+{% load i18n admin_urls static %}
+<div class="js-inline-admin-formset inline-group" id="{{ inline_admin_formset.formset.prefix }}-group"
+     data-inline-type="stacked" data-inline-formset="{{ inline_admin_formset.inline_formset_data }}">
+    <fieldset class="module {{ inline_admin_formset.classes }}">
+
+        <div class="card-body mx-0 px-0 py-0">
+            {{ inline_admin_formset.formset.management_form }}
+            {{ inline_admin_formset.formset.non_form_errors }}
+            <div class="d-inline-flex flex-wrap justify-content-between">
+                {% for inline_admin_form in inline_admin_formset %}
+
+                    {% if inline_admin_form.form.non_field_errors %}
+                        {{ inline_admin_form.form.non_field_errors }}{% endif %}
+                    {% for fieldset in inline_admin_form %}
+                        {% include "admin/similar_persons_fieldset.html" %}
+                    {% endfor %}
+                    {% if inline_admin_form.needs_explicit_pk_field %}{{ inline_admin_form.pk_field.field }}{% endif %}
+                    {% if inline_admin_form.fk_field %}{{ inline_admin_form.fk_field.field }}{% endif %}
+
+
+                {% endfor %}
+            </div>
+        </div>
+    </fieldset>
+</div>

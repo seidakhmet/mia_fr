@@ -9,19 +9,13 @@ x-base: &base-mia-fr
   env_file:
     - .env
   environment: &base-environtment
-    REDIS_HOST: "redis"
-    REDIS_PORT: 6379
-    DB_HOST: "db"
-    DB_PORT: 5432
-    RABBIT_HOST: "rabbitmq"
-    RABBIT_PORT: 5672
+    DJANGO_SETTINGS_MODULE: "config.settings.production"
   volumes:
-    - ~/data/storages/mia_fr/files:/files
+    - storages/files:/files
   depends_on:
     - db
     - redis
     - rabbitmq
-
 
 services:
   db:
@@ -33,25 +27,25 @@ services:
       POSTGRES_DB: "${DB_NAME}"
       POSTGRES_USER: "${DB_USER}"
       PGDATA: /var/lib/postgresql/data/pgdata
-    ports:
-      - "15432:5432"
     volumes:
-      - ~/databases/mia_fr/pg_db:/var/lib/postgresql/data/pgdata
+      - database/pg_db:/var/lib/postgresql/data/pgdata
   redis:
     image: redis:7-bullseye
     container_name: mia_fr_redis
     restart: always
-    ports:
-      - "16379:6379"
   rabbitmq:
     image: rabbitmq:3.11-alpine
     container_name: mia_fr_rabbitmq
     restart: always
-    ports:
-      - "15672:5672"
   celery:
     <<: *base-mia-fr
     container_name: mia_fr_celery
     command: celery -A config.celery_app worker --queues=mia-fr --loglevel=INFO --concurrency=4
+    environment:
+      <<: *base-environtment
+  api:
+    <<: *base-mia-fr
+    container_name: mia_fr_api
+    command: gunicorn config.server.wsgi:application --bind 0.0.0.0:8003
     environment:
       <<: *base-environtment

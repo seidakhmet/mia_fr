@@ -1,0 +1,33 @@
+{% load jazzmin %}
+
+<div class="card p-2">
+    {% for line in fieldset %}
+        {% for field in line %}
+            {% if field.field.label == 'Photo' or field.field.label == 'Фото' %}
+                {{ field.contents }}
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+    <div class="card-body px-1 py-1">
+        <ul class="list-group list-group-flush">
+            {% for line in fieldset %}
+                {% for field in line %}
+                    {% if field.field.label != 'Photo' and field.field.label != 'Фото' %}
+                        <li class="list-group-item px-1 py-1 d-flex align-items-center justify-content-between">
+                            <span class="text-muted small">
+                                {{ field.field.label|capfirst }}
+                                {% if field.field.field.required %}
+                                    <span class="text-red">* </span>
+                                {% endif %}
+                            </span>
+                            <span>{{ field.contents }}</span>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        </ul>
+    </div>
+
+
+</div>
+

@@ -11,7 +11,7 @@ x-base: &base-mia-fr
   environment: &base-environtment
     DJANGO_SETTINGS_MODULE: "config.settings.production"
   volumes:
-    - storages/files:/files
+    - /TENGRI/STORAGE/mia_fr/storages/files:/files
   depends_on:
     - db
     - redis
@@ -28,7 +28,7 @@ services:
       POSTGRES_USER: "${DB_USER}"
       PGDATA: /var/lib/postgresql/data/pgdata
     volumes:
-      - database/pg_db:/var/lib/postgresql/data/pgdata
+      - /TENGRI/STORAGE/mia_fr/pg_db:/var/lib/postgresql/data/pgdata
   redis:
     image: redis:7-bullseye
     container_name: mia_fr_redis
@@ -49,3 +49,5 @@ services:
     command: gunicorn config.server.wsgi:application --bind 0.0.0.0:8003
     environment:
       <<: *base-environtment
+    ports:
+      - "8003:8003"

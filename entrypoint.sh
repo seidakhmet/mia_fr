@@ -14,5 +14,6 @@ fi
 python /app/src/manage.py collectstatic --noinput
 python /app/src/manage.py migrate
 python /app/src/manage.py loaddata /app/src/fixtures/Group.json
+python /app/src/manage.py compilemessages
 
 exec "$@"

@@ -41,7 +41,6 @@ if is_present_environ:
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv("SECRET_KEY") or exit(f"SECRET_KEY environment variable is not set. {BASE_DIR}")
 
-
 # Application definition
 DJANGO_APPS = [
     "django.contrib.admin",
@@ -341,7 +340,6 @@ pending, finished, or waiting to be retried. Having a ‘started’ state can be
 tasks and there’s a need to report what task is currently running. """
 CELERY_TASK_TRACK_STARTED = True
 
-
 CELERY_WORKER_SEND_TASK_EVENTS = True
 CELERY_TASK_SEND_SENT_EVENT = True
 
@@ -363,3 +361,7 @@ CACHES = {
         },
     },
 }
+
+API_HOST = os.getenv("API_HOST", "localhost")
+
+CSRF_TRUSTED_ORIGINS = [f"http://*.{API_HOST}", ]

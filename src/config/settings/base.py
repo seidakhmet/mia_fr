@@ -364,4 +364,4 @@ CACHES = {
 
 API_HOST = os.getenv("API_HOST", "localhost")
 
-CSRF_TRUSTED_ORIGINS = [f"http://*.{API_HOST}", ]
+CSRF_TRUSTED_ORIGINS = [f"http://{API_HOST}", f"http://*.{API_HOST}", ]

@@ -56,7 +56,7 @@ services:
     restart: always
     volumes:
       - /TENGRI/STORAGE/mia_fr/storages/files:/files:ro
-      - nginx/nginx.conf:/etc/nginx/conf.d/nginx.conf:ro
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/nginx.conf:ro
     ports:
       - "20000:80"
     depends_on:

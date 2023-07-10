@@ -95,7 +95,7 @@ class SimilarPersonAdmin(admin.ModelAdmin):
         if obj.id_number:
             return mark_safe(
                 """<img 
-                        src="/files/udgrphotos/{0}.ldr" 
+                        src="/udgrphotos/{0}.ldr" 
                         style="max-height:250px; height: 250px;"
                         class="img-fluid mx-auto rounded"
                     />""".format(
@@ -166,7 +166,7 @@ class SimilarPersonInline(ImageInlineAbstract, admin.StackedInline):
         if obj.id_number:
             return mark_safe(
                 """<img 
-                        src="/files/udgrphotos/{0}.ldr" 
+                        src="/udgrphotos/{0}.ldr" 
                         style="max-height:250px; height: 250px;"
                         class="img-fluid mx-auto rounded"
                     />""".format(
@@ -249,7 +249,7 @@ class DetectedFaceAdmin(admin.ModelAdmin):
         if obj.persons:
             similar_person = obj.persons.first()
             return mark_safe("""<a href="{url}"><div style="position: relative; width:fit-content;">
-            <img src="/files/udgrphotos/{id_number}.ldr" style="max-height:250px; height: 250px;" class="img-fluid mx-auto" />
+            <img src="/udgrphotos/{id_number}.ldr" style="max-height:250px; height: 250px;" class="img-fluid mx-auto" />
             <div style="position: absolute;left: 0;bottom: 0;color:white; background:rgba(0, 0, 0, 0.5); opacity:1; width:100%;">
                 <small style="display:block;">{iin_trans}: {iin}</small>
                 <small style="display:block;">{first_name_trans}: {first_name}</small>

@@ -9,6 +9,7 @@ ENV PATH=$VENV_PATH/bin:$PATH
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libpq5 \
+    gettext \
     locales
 
 RUN sed -i -e 's/# ru_RU.UTF-8 UTF-8/ru_RU.UTF-8 UTF-8/' /etc/locale.gen && \

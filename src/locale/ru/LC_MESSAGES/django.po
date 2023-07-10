@@ -268,3 +268,9 @@ msgstr "Распознавание лиц"
 msgid "Thanks for spending some quality time with the Web site today."
 msgstr "Спасибо за использование сервиса."
 
+msgid "The similarest person"
+msgstr "Самый похожий человек"
+
+msgid "IIN"
+msgstr "ИИН"
+

@@ -46,9 +46,17 @@ services:
   api:
     <<: *base-mia-fr
     container_name: mia_fr_api
-#    command: gunicorn config.server.wsgi:application --bind 0.0.0.0:8003
-    command: python manage.py runserver 0.0.0.0:8003
+    command: gunicorn config.server.wsgi:application --bind 0.0.0.0:8003
+#    command: python manage.py runserver 0.0.0.0:8003
     environment:
       <<: *base-environtment
+  nginx:
+    image: nginx:latest
+    container_name: mia_fr_nginx
+    restart: always
+    volumes:
+      - /TENGRI/STORAGE/mia_fr/storages/files:/files:ro
     ports:
-      - "20000:8003"
+      - "20000:80"
+    depends_on:
+      - api

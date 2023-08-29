@@ -71,6 +71,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "config.middlewares.request_logger.RequestLogMiddleware",
 ]
 
 ROOT_URLCONF = "config.urls"
@@ -366,3 +367,35 @@ API_HOST = os.getenv("API_HOST", "localhost")
 API_PORT = os.getenv("API_PORT", "20000")
 
 CSRF_TRUSTED_ORIGINS = [f"http://{API_HOST}:{API_PORT}", ]
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+        },
+        'simple': {
+            'format': '%(levelname)s %(asctime)s %(message)s'
+        },
+    },
+    'handlers': {
+        'db_log': {
+            'level': 'DEBUG',
+            'class': 'apps.common.db_log_handler.DatabaseLogHandler'
+        },
+    },
+    'loggers': {
+        'db': {
+            'handlers': ['db_log'],
+            'level': 'DEBUG'
+        },
+        'django.request': {
+            'handlers': ['db_log'],
+            'level': 'INFO',
+            'propagate': False,
+        }
+    }
+}
+
+DJANGO_DB_LOGGER_ENABLE_FORMATTER = True

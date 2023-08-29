@@ -13,7 +13,7 @@
             {% for line in fieldset %}
                 {% for field in line %}
                     {% if field.field.label != 'Photo' and field.field.label != 'Фото' %}
-                        <li class="list-group-item px-1 py-1 d-flex align-items-center justify-content-between">
+                        <li class="list-group-item px-1 py-1 d-flex align-items-left justify-content-between">
                             <span class="text-muted small">
                                 {{ field.field.label|capfirst }}
                                 {% if field.field.field.required %}

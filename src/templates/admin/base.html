@@ -55,7 +55,7 @@
 <div class="wrapper">
 
     {% if not is_popup %}
-        <nav class="main-header navbar navbar-expand {{ jazzmin_ui.navbar_classes }}" id="jazzy-navbar">
+        <nav class="main-header navbar navbar-expand {{ jazzmin_ui.navbar_classes }}" style="margin-left:0px!important;" id="jazzy-navbar">
             <ul class="navbar-nav">
 
                 {% if jazzmin_settings.show_sidebar %}
@@ -261,7 +261,7 @@
         {% endblock %}
     {% endif %}
 
-    <div class="content-wrapper" {% if is_popup %}style="margin-left:0px; padding-top: 20px;"{% endif %}>
+    <div class="content-wrapper" style="margin-left:0px!important;">
         {% block page_content %}
             {% if not is_popup %}
             <div class="content border-bottom mb-2">

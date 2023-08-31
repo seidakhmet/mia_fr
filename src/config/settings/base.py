@@ -53,6 +53,7 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
     "jazzmin",
     "django_object_actions",
+    "axes",
 ]
 LOCAL_APPS = [
     "apps.common.apps.CommonConfig",
@@ -72,6 +73,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "config.middlewares.request_logger.RequestLogMiddleware",
+    'axes.middleware.AxesMiddleware',
 ]
 
 ROOT_URLCONF = "config.urls"
@@ -399,3 +401,20 @@ LOGGING = {
 }
 
 DJANGO_DB_LOGGER_ENABLE_FORMATTER = True
+
+AUTHENTICATION_BACKENDS = [
+    # AxesStandaloneBackend should be the first backend in the AUTHENTICATION_BACKENDS list.
+    'axes.backends.AxesStandaloneBackend',
+
+    # Django ModelBackend is the default authentication backend.
+    'django.contrib.auth.backends.ModelBackend',
+]
+
+# Block by Username only (i.e.: Same user different IP is still blocked, but different user same IP is not)
+AXES_LOCKOUT_PARAMETERS = ["username"]
+
+# Disable logging the IP-Address of failed login attempts by returning None for attempts to get the IP
+# Ignore assigning a lambda function to a variable for brevity
+AXES_CLIENT_IP_CALLABLE = lambda x: None  # noqa: E731
+
+AXES_FAILURE_LIMIT = 1

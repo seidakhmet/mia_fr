@@ -417,4 +417,4 @@ AXES_LOCKOUT_PARAMETERS = ["username"]
 # Ignore assigning a lambda function to a variable for brevity
 AXES_CLIENT_IP_CALLABLE = lambda x: None  # noqa: E731
 
-AXES_FAILURE_LIMIT = 10
+AXES_FAILURE_LIMIT = 1

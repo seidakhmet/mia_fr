@@ -285,3 +285,6 @@ msgstr "Лог запроса"
 
 msgid "Request logs"
 msgstr "Логи запросов"
+
+msgid "Version 1.0.0"
+msgstr "Версия 1.0.0"

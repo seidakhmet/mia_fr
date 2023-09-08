@@ -57,8 +57,9 @@ services:
     volumes:
       - /TENGRI/STORAGE/mia_fr/storages/files:/files:ro
       - /TENGRI/STORAGE/ud_gr_photos:/udgrphotos:ro
+      - ./nginx/certs:/certs
       - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
     ports:
-      - "20000:80"
+      - "20000:443"
     depends_on:
       - api

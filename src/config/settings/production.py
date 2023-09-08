@@ -4,5 +4,3 @@ from .base import *  # noqa
 DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
-
-CSRF_TRUSTED_ORIGINS = ['https://*', ]

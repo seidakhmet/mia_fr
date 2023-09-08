@@ -368,7 +368,7 @@ CACHES = {
 API_HOST = os.getenv("API_HOST", "localhost")
 API_PORT = os.getenv("API_PORT", "20000")
 
-CSRF_TRUSTED_ORIGINS = [f"http://{API_HOST}:{API_PORT}", ]
+CSRF_TRUSTED_ORIGINS = [f"https://{API_HOST}:{API_PORT}", ]
 
 LOGGING = {
     'version': 1,

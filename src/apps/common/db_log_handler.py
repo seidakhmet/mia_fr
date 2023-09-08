@@ -24,7 +24,7 @@ class DatabaseLogHandler(logging.Handler):
             'level': record.levelno,
             'msg': msg,
             'trace': trace,
-            'username': record.username if hasattr(record, 'username') else record.request.user.username,
+            'username': record.username if hasattr(record, 'username') else 'Anonymous',
         }
 
         StatusLog.objects.create(**kwargs)

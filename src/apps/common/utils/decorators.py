@@ -1,4 +1,5 @@
 import base64
+import logging
 import time
 import uuid
 from contextlib import contextmanager
@@ -31,7 +32,7 @@ def _redis_lock(lock_name, expires=LOCK_EXPIRE):
             try:
                 redis_cache.delete(lock_name)
             except ConnectionError:
-                pass
+                logging.info("Redis connection error")
 
 
 def task_lock(func=None, main_key="", timeout=None):

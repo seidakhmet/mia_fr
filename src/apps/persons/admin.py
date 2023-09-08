@@ -1,9 +1,8 @@
 from django.contrib import admin
 from django.contrib.admin.models import LogEntry, DELETION
-from django.utils.html import escape
+from django.utils.html import escape, format_html
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
-from django.utils.safestring import mark_safe
 from django_object_actions import DjangoObjectActions
 
 from . import models
@@ -22,7 +21,7 @@ class ImageInlineAbstract:
 
     def image_preview(self, obj):
         if obj.image:
-            return mark_safe(
+            return format_html(
                 '<a href="{1}"><img src="{0}" style="max-height:250px; height: auto;" class="rounded" /></a>'.format(
                     obj.image.url,
                     reverse(
@@ -46,7 +45,7 @@ class ReadOnlyAdmin:
 
     def image_preview(self, obj: models.OriginalImage):
         if obj.image:
-            return mark_safe('<img src="{0}" style="max-height:350px; height: auto;" class="rounded" />'.format(obj.image.url))
+            return format_html('<img src="{0}" style="max-height:350px; height: auto;" class="rounded" />'.format(obj.image.url))
         else:
             return _("(No photo)")
 
@@ -93,7 +92,7 @@ class SimilarPersonAdmin(admin.ModelAdmin):
 
     def photo_preview(self, obj: models.SimilarPerson):
         if obj.id_number:
-            return mark_safe(
+            return format_html(
                 """<img 
                         src="/udgrphotos/{0}.ldr" 
                         style="max-height:250px; height: 250px;"
@@ -109,7 +108,7 @@ class SimilarPersonAdmin(admin.ModelAdmin):
 
     def detected_face_preview(self, obj: models.SimilarPerson):
         if obj.detected_face.image:
-            return mark_safe(
+            return format_html(
                 '<a href="{1}"><img src="{0}" style="max-height:250px; height: auto;" class="rounded"/></a>'.format(
                     obj.detected_face.image.url,
                     reverse("admin:persons_detectedface_change", args=(obj.detected_face.id,)),
@@ -122,7 +121,7 @@ class SimilarPersonAdmin(admin.ModelAdmin):
 
     def original_image_preview(self, obj: models.SimilarPerson):
         if obj.detected_face.original_image.image:
-            return mark_safe(
+            return format_html(
                 '<a href="{1}"><img src="{0}" style="max-height:250px; height: auto;" class="rounded"/></a>'.format(
                     obj.detected_face.original_image.image.url,
                     reverse("admin:persons_originalimage_change", args=(obj.detected_face.original_image.id,)),
@@ -164,7 +163,7 @@ class SimilarPersonInline(ImageInlineAbstract, admin.StackedInline):
 
     def photo_preview(self, obj: models.SimilarPerson):
         if obj.id_number:
-            return mark_safe(
+            return format_html(
                 """<img 
                         src="/udgrphotos/{0}.ldr" 
                         style="max-height:250px; height: 250px;"
@@ -226,7 +225,7 @@ class DetectedFaceAdmin(admin.ModelAdmin):
 
     def image_preview(self, obj: models.DetectedFace):
         if obj.image:
-            return mark_safe('<img src="{0}" style="max-height:250px; height: auto;" class="rounded"/>'.format(obj.image.url))
+            return format_html('<img src="{0}" style="max-height:250px; height: auto;" class="rounded"/>'.format(obj.image.url))
         else:
             return _("(No photo)")
 
@@ -234,7 +233,7 @@ class DetectedFaceAdmin(admin.ModelAdmin):
 
     def original_image_preview(self, obj: models.DetectedFace):
         if obj.original_image.image:
-            return mark_safe(
+            return format_html(
                 '<a href="{1}"><img src="{0}" style="max-height:250px; height: auto;" class="rounded" /></a>'.format(
                     obj.original_image.image.url,
                     reverse("admin:persons_originalimage_change", args=(obj.original_image.id,)),
@@ -248,7 +247,7 @@ class DetectedFaceAdmin(admin.ModelAdmin):
     def max_distance_person(self, obj: models.DetectedFace):
         if obj.persons:
             similar_person = obj.persons.first()
-            return mark_safe("""<a href="{url}"><div style="position: relative; width:fit-content;">
+            return format_html("""<a href="{url}"><div style="position: relative; width:fit-content;">
             <img src="/udgrphotos/{id_number}.ldr" style="max-height:250px; height: 250px;" class="img-fluid mx-auto" />
             <div style="position: absolute;left: 0;bottom: 0;color:white; background:rgba(0, 0, 0, 0.5); opacity:1; width:100%;">
                 <small style="display:block;">{iin_trans}: {iin}</small>
@@ -450,7 +449,7 @@ class LogEntryAdmin(admin.ModelAdmin):
                 reverse("admin:%s_%s_change" % (ct.app_label, ct.model), args=[obj.object_id]),
                 escape(obj.object_repr),
             )
-        return mark_safe(link)
+        return format_html(link)
 
     object_link.admin_order_field = "object_repr"
     object_link.short_description = "object"

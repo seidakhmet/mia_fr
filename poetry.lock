@@ -547,6 +547,17 @@ Django = ">=2.2,<3.0.0 || >=3.2.0,<5.0"
 pytz = "*"
 
 [[package]]
+name = "environ"
+version = "1.0"
+description = "Stack Based Globals Management"
+category = "main"
+optional = false
+python-versions = "*"
+files = [
+    {file = "environ-1.0.tar.gz", hash = "sha256:4df7f1dfeb7d1c988d2e19a8bd5d547a526e0400aeb35adf732032472f35dcb0"},
+]
+
+[[package]]
 name = "executing"
 version = "1.2.0"
 description = "Get the currently executing AST node of a frame, and other information"
@@ -1282,4 +1293,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "1b552f9fd35923ae5ae1d49d4bdcbd331b27e8d37cf431f83d2c3d68511271fa"
+content-hash = "5ac161a64d8c8d1a02addcd6c051f7801a5e181bbaea5255a4db78b851ce80de"

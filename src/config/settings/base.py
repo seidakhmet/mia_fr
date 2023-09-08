@@ -1,5 +1,5 @@
+import logging
 import os
-from pathlib import Path
 import importlib.util
 from distutils.util import strtobool
 from django.utils.translation import gettext_lazy as _
@@ -7,7 +7,7 @@ from django.utils.translation import gettext_lazy as _
 try:
     import environ
 except ModuleNotFoundError:
-    pass
+    logging.error("environ module not found")
 
 
 def get_bool_from_env(name, default_value):

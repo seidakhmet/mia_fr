@@ -16,7 +16,7 @@ x-base: &base-mia-fr
     RABBIT_HOST: "rabbitmq"
     RABBIT_PORT: 5672
   volumes:
-    - ~/data/storages/mia_fr/files:/files
+    - ~/storages/mia_fr/files:/files
   depends_on:
     - db
     - redis

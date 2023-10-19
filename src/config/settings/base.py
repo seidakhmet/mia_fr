@@ -1,7 +1,10 @@
+import datetime as dt
 import logging
 import os
 import importlib.util
 from distutils.util import strtobool
+
+import rest_framework.permissions
 from django.utils.translation import gettext_lazy as _
 
 try:
@@ -51,11 +54,14 @@ DJANGO_APPS = [
     "django.contrib.staticfiles",
 ]
 THIRD_PARTY_APPS = [
+    "rest_framework",
     "jazzmin",
     "django_object_actions",
     "axes",
+    "rest_framework_simplejwt",
 ]
 LOCAL_APPS = [
+    "drf_yasg",
     "apps.common.apps.CommonConfig",
     "apps.users.apps.UsersConfig",
     "apps.persons.apps.PersonsConfig",
@@ -73,7 +79,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "config.middlewares.request_logger.RequestLogMiddleware",
-    'axes.middleware.AxesMiddleware',
+    "axes.middleware.AxesMiddleware",
 ]
 
 ROOT_URLCONF = "config.urls"
@@ -289,10 +295,6 @@ JAZZMIN_SETTINGS = {
     "language_chooser": True,
 }
 
-JAZZMIN_UI_TWEAKS = {
-    "theme": "flatly",
-}
-
 REDIS_HOST = os.getenv("REDIS_HOST", "redis")
 REDIS_PORT = os.getenv("REDIS_PORT", 6379)
 REDIS_DB = os.getenv("REDIS_DB", 1)
@@ -368,46 +370,37 @@ CACHES = {
 API_HOST = os.getenv("API_HOST", "localhost")
 API_PORT = os.getenv("API_PORT", "20000")
 
-CSRF_TRUSTED_ORIGINS = [f"https://{API_HOST}:{API_PORT}", ]
+CSRF_TRUSTED_ORIGINS = [
+    f"https://{API_HOST}:{API_PORT}",
+]
 
 LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'formatters': {
-        'verbose': {
-            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
-        },
-        'simple': {
-            'format': '%(levelname)s %(asctime)s %(message)s'
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "verbose": {"format": "%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s"},
+        "simple": {"format": "%(levelname)s %(asctime)s %(message)s"},
+    },
+    "handlers": {
+        "db_log": {"level": "DEBUG", "class": "apps.common.db_log_handler.DatabaseLogHandler"},
+    },
+    "loggers": {
+        "db": {"handlers": ["db_log"], "level": "DEBUG"},
+        "django.request": {
+            "handlers": ["db_log"],
+            "level": "INFO",
+            "propagate": False,
         },
     },
-    'handlers': {
-        'db_log': {
-            'level': 'DEBUG',
-            'class': 'apps.common.db_log_handler.DatabaseLogHandler'
-        },
-    },
-    'loggers': {
-        'db': {
-            'handlers': ['db_log'],
-            'level': 'DEBUG'
-        },
-        'django.request': {
-            'handlers': ['db_log'],
-            'level': 'INFO',
-            'propagate': False,
-        }
-    }
 }
 
 DJANGO_DB_LOGGER_ENABLE_FORMATTER = True
 
 AUTHENTICATION_BACKENDS = [
     # AxesStandaloneBackend should be the first backend in the AUTHENTICATION_BACKENDS list.
-    'axes.backends.AxesStandaloneBackend',
-
+    "axes.backends.AxesStandaloneBackend",
     # Django ModelBackend is the default authentication backend.
-    'django.contrib.auth.backends.ModelBackend',
+    "django.contrib.auth.backends.ModelBackend",
 ]
 
 # Block by Username only (i.e.: Same user different IP is still blocked, but different user same IP is not)
@@ -418,3 +411,24 @@ AXES_LOCKOUT_PARAMETERS = ["username"]
 AXES_CLIENT_IP_CALLABLE = lambda x: None  # noqa: E731
 
 AXES_FAILURE_LIMIT = 10
+
+
+SWAGGER_SETTINGS = {
+    "SECURITY_DEFINITIONS": {"api_key": {"type": "apiKey", "in": "header", "name": "Authorization"}},
+    "USE_SESSION_AUTH": False,
+    "JSON_EDITOR": True,
+}
+
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ],
+    "DEFAULT_PERMISSION_CLASSES": ["rest_framework.permissions.IsAuthenticated"],
+    "DATETIME_FORMAT": "%Y-%m-%dT%H:%M:%S",
+    "COERCE_DECIMAL_TO_STRING": False,
+}
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": dt.timedelta(days=1),
+    "REFRESH_TOKEN_LIFETIME": dt.timedelta(days=1),
+}

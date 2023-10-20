@@ -374,7 +374,10 @@ API_HOST = os.getenv("API_HOST", "nginx")
 API_PORT = os.getenv("API_PORT", "8003")
 
 CSRF_TRUSTED_ORIGINS = [
+    f"https://{API_HOST}:{API_PORT}",
     f"http://{API_HOST}:{API_PORT}",
+    f"https://127.0.0.1:20000",
+    f"http://127.0.0.1:20000",
 ]
 
 LOGGING = {

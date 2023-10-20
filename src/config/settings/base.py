@@ -65,6 +65,7 @@ LOCAL_APPS = [
     "apps.common.apps.CommonConfig",
     "apps.users.apps.UsersConfig",
     "apps.persons.apps.PersonsConfig",
+    "apps.web.apps.WebConfig",
 ]
 
 INSTALLED_APPS = THIRD_PARTY_APPS + DJANGO_APPS + LOCAL_APPS
@@ -163,6 +164,8 @@ AUTH_USER_MODEL = "users.User"
 
 STATIC_URL = os.getenv("STATIC_URL", "/files/static/")
 STATIC_ROOT = os.getenv("STATIC_ROOT", os.path.join("/files", "static"))
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+
 
 MEDIA_URL = os.getenv("MEDIA_URL", "/files/media/")
 MEDIA_ROOT = os.getenv("MEDIA_ROOT", os.path.join("/files", "media"))
@@ -188,15 +191,15 @@ JAZZMIN_SETTINGS = {
     "site_header": "SAQ",
     # Title on the brand (19 chars max) (defaults to current_admin_site.site_header if absent or None)
     "site_brand": "SAQ",
-    # Logo to use for your site, must be present in static files, used for brand on top left
+    # Logo to use for your web, must be present in static files, used for brand on top left
     "site_logo": None,
-    # Logo to use for your site, must be present in static files, used for login form logo (defaults to site_logo)
+    # Logo to use for your web, must be present in static files, used for login form logo (defaults to site_logo)
     "login_logo": None,
     # Logo to use for login form in dark themes (defaults to login_logo)
     "login_logo_dark": None,
     # CSS classes that are applied to the logo above
     "site_logo_classes": "img-circle",
-    # Relative path to a favicon for your site, will default to site_logo if absent (ideally 32x32 px)
+    # Relative path to a favicon for your web, will default to site_logo if absent (ideally 32x32 px)
     "site_icon": None,
     # Welcome text on the login screen
     "welcome_sign": _("Welcome to the SAQ"),
@@ -412,7 +415,6 @@ AXES_CLIENT_IP_CALLABLE = lambda x: None  # noqa: E731
 
 AXES_FAILURE_LIMIT = 10
 
-
 SWAGGER_SETTINGS = {
     "SECURITY_DEFINITIONS": {"api_key": {"type": "apiKey", "in": "header", "name": "Authorization"}},
     "USE_SESSION_AUTH": False,
@@ -432,3 +434,10 @@ SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": dt.timedelta(days=1),
     "REFRESH_TOKEN_LIFETIME": dt.timedelta(days=1),
 }
+
+
+TAILWIND_APP_NAME = 'apps.theme'
+
+INTERNAL_IPS = [
+    "127.0.0.1",
+]

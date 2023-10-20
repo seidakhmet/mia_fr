@@ -1,0 +1,82 @@
+{% extends "web/base.html" %}
+
+{% load i18n static %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-3 col-sm-12">
+            {% include "web/sidebar.html" %}
+        </div>
+        <div class="col-md-9 col-sm-12">
+            <ul class="nav nav-tabs mt-3" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="faces-tab" data-bs-toggle="tab" data-bs-target="#faces-tab-pane"
+                            type="button" role="tab" aria-controls="faces-tab-pane" aria-selected="true">
+                        {% trans "Detected faces" %}
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="images-tab" data-bs-toggle="tab" data-bs-target="#images-tab-pane"
+                            type="button" role="tab" aria-controls="images-tab-pane" aria-selected="false">
+                        {% trans "Original images" %}
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="requests-tab" data-bs-toggle="tab" data-bs-target="#requests-tab-pane"
+                            type="button" role="tab" aria-controls="requests-tab-pane" aria-selected="false">
+                        {% trans "Face recognition requests" %}
+                    </button>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="faces-tab-pane" role="tabpanel" aria-labelledby="faces-tab"
+                     tabindex="0">
+                    <div class="row row-cols-sm-1">
+                        {% for face in faces %}
+                            <div class="col col-md-auto">
+                                <div class="card mx-1 my-1" style="width: 20rem;">
+                                    <img src="https://167.235.199.85:20000/files/media/{{ face.image }}"
+                                         class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <ul class="list-group list-group-flush">
+                                          <li class="list-group-item h-auto">{{ face.created_at_pretty }}</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="images-tab-pane" role="tabpanel" aria-labelledby="images-tab"
+                     tabindex="0">
+                    <div class="row row-cols-sm-1">
+                        {% for face in images %}
+                            <div class="col col-md-auto">
+                                <div class="card mx-1 my-1" style="width: 20rem;">
+                                    <img src="https://167.235.199.85:20000/files/media/{{ face.image }}"
+                                         class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <ul class="list-group list-group-flush">
+                                          <li class="list-group-item h-auto">{{ face.created_at_pretty }}</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="requests-tab-pane" role="tabpanel" aria-labelledby="requests-tab"
+                     tabindex="0">
+                    <div class="row row-cols-sm-1">
+                        {% for face in faces %}
+                            <div class="col col-md-auto">
+                                {{ face.uuid }} <br>
+                                {{ face.created_at_pretty }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

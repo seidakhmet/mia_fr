@@ -1,0 +1,47 @@
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_language_info for LANGUAGE_CODE as current_language %}
+{% get_current_language_bidi as LANGUAGE_BIDI %}
+{% get_available_languages as LANGUAGES %}
+{% get_language_info_list for LANGUAGES as languages %}
+
+
+<header class="p-3 mb-3 border-bottom">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <a href="{% url 'index' %}"
+               class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
+                SAQ
+            </a>
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+
+            </ul>
+
+            <div class="dropdown">
+                <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle"
+                   data-bs-toggle="dropdown" aria-expanded="false">
+                    {{ current_language.name_local }}
+                </a>
+                <ul class="dropdown-menu text-small">
+                    <form action="{% url 'set_language' %}" method="post">
+
+                        {% for language in languages %}
+                            <li>
+                                <a type="submit" name="language" value="{{ language.code }}"
+                                        class="dropdown-item"
+                                        lang="{{ language.code }}" style="width: 100%; border:none;">
+                                    {{ language.name_local|title }}
+                                </a>
+                            </li>
+                        {% endfor %}
+
+                    </form>
+                </ul>
+            </div>
+            <div class="text-end">
+
+                <button type="button" class="btn btn-warning">{% trans "Log out" %}</button>
+            </div>
+        </div>
+    </div>
+</header>

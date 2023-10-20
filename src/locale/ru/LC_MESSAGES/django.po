@@ -265,7 +265,7 @@ msgstr "Закрыть"
 msgid "Face recognition"
 msgstr "Распознавание лиц"
 
-msgid "Thanks for spending some quality time with the Web site today."
+msgid "Thanks for spending some quality time with the Web web today."
 msgstr "Спасибо за использование сервиса."
 
 msgid "The similarest person"

@@ -176,7 +176,7 @@ MEDIA_ROOT = os.getenv("MEDIA_ROOT", os.path.join("/files", "media"))
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # DATA SCIENCE settings
-DS_HOST = "http://" + os.environ.get("DS_HOST", "localhost") + ":" + os.environ.get("DS_PORT", "8889")
+DS_HOST = "http://" + os.environ.get("DS_HOST", "111.111.0.1") + ":" + os.environ.get("DS_PORT", "9999")
 DS_URLS = {
     "detector": DS_HOST + "/detector",
     "get_detected_faces": DS_HOST + "/aligned_all",
@@ -433,10 +433,3 @@ SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": dt.timedelta(days=1),
     "REFRESH_TOKEN_LIFETIME": dt.timedelta(days=1),
 }
-
-
-TAILWIND_APP_NAME = "apps.theme"
-
-INTERNAL_IPS = [
-    "127.0.0.1",
-]

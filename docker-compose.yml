@@ -1,5 +1,13 @@
 version: '3.8'
 
+networks:
+  mia_fr_network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: "111.111.0.0/24"
+
 x-base: &base-mia-fr
   image: mia-fr:latest
   build:
@@ -37,21 +45,29 @@ services:
       - "15432:5432"
     volumes:
       - ~/databases/mia_fr/pg_db:/var/lib/postgresql/data/pgdata
+    networks:
+      - mia_fr_network
   redis:
     image: redis:7-bullseye
     container_name: mia_fr_redis
     restart: always
     ports:
       - "16379:6379"
+    networks:
+      - mia_fr_network
   rabbitmq:
     image: rabbitmq:3.11-alpine
     container_name: mia_fr_rabbitmq
     restart: always
     ports:
       - "15672:5672"
+    networks:
+      - mia_fr_network
   celery:
     <<: *base-mia-fr
     container_name: mia_fr_celery
     command: celery -A config.celery_app worker --queues=mia-fr --loglevel=INFO --concurrency=4
     environment:
       <<: *base-environtment
+    networks:
+      - mia_fr_network

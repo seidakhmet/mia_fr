@@ -1,5 +1,13 @@
 version: '3.8'
 
+networks:
+  mia_fr_network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: "111.111.0.0/24"
+
 x-base: &base-mia-fr
   image: mia-fr:latest
   build:
@@ -11,7 +19,7 @@ x-base: &base-mia-fr
   environment: &base-environtment
     DJANGO_SETTINGS_MODULE: "config.settings.production"
   volumes:
-    - /TENGRI/STORAGE/mia_fr/storages/files:/files
+    - /TENGRI/STORAGE/mia_fr/files:/files
   depends_on:
     - db
     - redis
@@ -29,33 +37,42 @@ services:
       PGDATA: /var/lib/postgresql/data/pgdata
     volumes:
       - /TENGRI/STORAGE/mia_fr/pg_db:/var/lib/postgresql/data/pgdata
+    networks:
+      - mia_fr_network
   redis:
     image: redis:7-bullseye
     container_name: mia_fr_redis
     restart: always
+    networks:
+      - mia_fr_network
   rabbitmq:
     image: rabbitmq:3.11-alpine
     container_name: mia_fr_rabbitmq
     restart: always
+    networks:
+      - mia_fr_network
   celery:
     <<: *base-mia-fr
     container_name: mia_fr_celery
     command: celery -A config.celery_app worker --queues=mia-fr --loglevel=INFO --concurrency=4
     environment:
       <<: *base-environtment
+    networks:
+      - mia_fr_network
   api:
     <<: *base-mia-fr
     container_name: mia_fr_api
     command: gunicorn config.server.wsgi:application --bind 0.0.0.0:8003
-#    command: python manage.py runserver 0.0.0.0:8003
     environment:
       <<: *base-environtment
+    networks:
+      - mia_fr_network
   nginx:
     image: nginx:1.21-alpine
     container_name: mia_fr_nginx
     restart: always
     volumes:
-      - /TENGRI/STORAGE/mia_fr/storages/files:/files:ro
+      - /TENGRI/STORAGE/mia_fr/files:/files:ro
       - /TENGRI/STORAGE/ud_gr_photos:/udgrphotos:ro
       - ./nginx/certs:/certs
       - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
@@ -63,3 +80,5 @@ services:
       - "20000:443"
     depends_on:
       - api
+    networks:
+      - mia_fr_network

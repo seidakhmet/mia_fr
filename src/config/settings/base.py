@@ -164,7 +164,7 @@ AUTH_USER_MODEL = "users.User"
 
 STATIC_URL = os.getenv("STATIC_URL", "/files/static/")
 STATIC_ROOT = os.getenv("STATIC_ROOT", os.path.join("/files", "static"))
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+STATICFILES_DIRS = (os.path.join(BASE_DIR, "static_files"),)
 
 
 MEDIA_URL = os.getenv("MEDIA_URL", "/files/media/")
@@ -436,7 +436,7 @@ SIMPLE_JWT = {
 }
 
 
-TAILWIND_APP_NAME = 'apps.theme'
+TAILWIND_APP_NAME = "apps.theme"
 
 INTERNAL_IPS = [
     "127.0.0.1",

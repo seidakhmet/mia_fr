@@ -25,7 +25,7 @@ REDIS_PORT=6379  # Порт Redis
 RABBIT_HOST=rabbitmq  # IP адрес RabbitMQ
 RABBIT_PORT=5672  # Порт RAbbitMQ
 DS_HOST=111.111.0.1  # IP адрес аналитической системы (здесь внутри идёт своя сеть с настройкой ipam subnet 111.111.0.0/24)
-DS_PORT=9999  # Порт аналитической системы
+DS_PORT=8889  # Порт аналитической системы
 DJANGO_SETTINGS_MODULE=config.settings.production  # Режим запуска приложения (по умолчанию production, для дебага development)
 ```
  

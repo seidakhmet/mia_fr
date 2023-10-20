@@ -76,7 +76,7 @@ services:
       - /TENGRI/STORAGE/ud_gr_photos:/udgrphotos:ro
       - ./nginx/certs:/certs
       - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
-      - ./src/statiс_files/bootstrap:/bootstrap
+      - ./src/static_files/bootstrap:/bootstrap
     ports:
       - "20000:443"
     depends_on:

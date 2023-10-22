@@ -37,6 +37,8 @@ services:
       PGDATA: /var/lib/postgresql/data/pgdata
     volumes:
       - /TENGRI/STORAGE/mia_fr/pg_db:/var/lib/postgresql/data/pgdata
+    ports:
+      - "54325:5432"
     networks:
       - mia_fr_network
   redis:

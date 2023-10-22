@@ -1,0 +1,113 @@
+{% extends "web/base.html" %}
+
+{% load i18n static %}
+{% block content %}
+    <style>
+        .image-container {
+            display: inline-block;
+            width: 20vw; /* Ширина контейнера на 100% ширины экрана */
+            min-width: 20vw;
+            height: 20vh; /* Высота контейнера на 100% высоты экрана */
+            overflow: hidden;
+        }
+
+        .image-container img {
+            width: 100%; /* Ширина изображения на 100% ширины контейнера */
+            height: 100%; /* Высота изображения на 100% высоты контейнера */
+            object-fit: contain;
+        }
+    </style>
+    <main>
+        {% include "web/header.html" %}
+        <div class="row adaptive-text">
+            <div class="col-md-3 col-sm-12">
+                {% include "web/fr_sidebar.html" %}
+            </div>
+            <div class="col-md-9 col-sm-12">
+                {% if message %}
+                    {% if message_status %}
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <strong>{% trans "Success" %}!</strong> {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>{% trans "Error" %}!</strong> {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endif %}
+                {% endif %}
+                <div class="table-responsive">
+                    <table class="table table-sm">
+                        <thead class="table-light">
+                        <tr>
+                            <th class="w-auto">{% trans "UUID" %}</th>
+                            <th class="w-auto">{% trans "Created time" %}</th>
+                            <th class="w-auto">{% trans "Created by" %}</th>
+                            <th class="w-100">{% trans "Original images" %}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for item in items %}
+                            <tr>
+                                <td>{{ item.uuid }}</td>
+                                <td>{{ item.created_at_pretty }}</td>
+                                <td>{{ item.created_by }}</td>
+                                <td>
+                                    {% for image in item.images.all %}
+                                        <a href="{% url "image-detail" image_uuid=image.uuid %}">
+                                            <div class="image-container">
+                                                <img src="https://167.235.199.85:20000/files/media/{{ image.image }}"
+                                                     alt="">
+                                            </div>
+                                        </a>
+                                    {% endfor %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% trans "Total count" %}: {{ items_count }}
+                {% if items_count != 0 %}
+                    <nav aria-label="...">
+                        <ul class="pagination">
+                            {% if items.has_previous %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ items.previous_page_number }}">&laquo;</a>
+                                </li>
+                            {% else %}
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#">&laquo;</a>
+                                </li>
+                            {% endif %}
+
+                            {% for i in items.paginator.page_range %}
+                                {% if i == current_page %}
+                                    <li class="page-item active" aria-current="page">
+                                        <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+                                    </li>
+                                {% else %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+                                    </li>
+                                {% endif %}
+
+                            {% endfor %}
+
+                            {% if items.has_next %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ items.paginator.num_pages }}">&raquo;</a>
+                                </li>
+                            {% else %}
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#">&raquo;</a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                {% endif %}
+            </div>
+        </div>
+    </main>
+{% endblock %}

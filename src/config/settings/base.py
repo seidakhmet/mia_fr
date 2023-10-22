@@ -108,6 +108,12 @@ WSGI_APPLICATION = "config.server.wsgi.application"
 POSTGRES_HOST = os.getenv("DB_HOST", "db")
 POSTGRES_PORT = os.getenv("DB_PORT", 5432)
 
+FR_DB_NAME = os.getenv("FR_DB_NAME", "fr_kpp")
+FR_DB_USER = os.getenv("FR_DB_USER", "face_reco_admin")
+FR_DB_PASSWORD = os.getenv("FR_DB_PASSWORD", "qwerty123")
+FR_DB_HOST = os.getenv("FR_DB_HOST", "111.111.0.1")
+FR_DB_PORT = os.getenv("FR_DB_PORT", 20005)
+
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
@@ -116,7 +122,7 @@ DATABASES = {
         "PASSWORD": os.getenv("DB_PASSWORD", "mia_fr_db"),
         "HOST": POSTGRES_HOST,
         "PORT": POSTGRES_PORT,
-    }
+    },
 }
 
 # Password validation
@@ -145,6 +151,7 @@ LANGUAGE_CODE = "ru-ru"
 LANGUAGES = (
     ("ru-ru", _("Russian language")),
     ("en-us", _("English language")),
+    # ("kz-kk", _("Kazakh language")),
 )
 
 TIME_ZONE = "Asia/Almaty"

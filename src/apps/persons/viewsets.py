@@ -9,10 +9,11 @@ from rest_framework.decorators import action
 
 from . import models
 from . import serializers
+from . import tasks
 
 
 class FaceRecognitionRequestViewSet(
-    drf_viewsets.GenericViewSet, drf_mixins.CreateModelMixin, drf_mixins.ListModelMixin
+    drf_viewsets.GenericViewSet, drf_mixins.CreateModelMixin, drf_mixins.ListModelMixin, drf_mixins.RetrieveModelMixin
 ):
     queryset = models.FaceRecognitionRequest.objects.all()
     serializer_class = serializers.FaceRecognitionRequestSerializer
@@ -36,7 +37,7 @@ class FaceRecognitionRequestViewSet(
         return drf_response.Response(serializer.data, status=drf_status.HTTP_200_OK)
 
 
-class OriginalImageViewSet(drf_viewsets.GenericViewSet, drf_mixins.ListModelMixin):
+class OriginalImageViewSet(drf_viewsets.GenericViewSet, drf_mixins.ListModelMixin, drf_mixins.RetrieveModelMixin):
     queryset = models.OriginalImage.objects.all()
     serializer_class = serializers.OriginalImageSerializer
     lookup_field = "uuid"
@@ -51,8 +52,21 @@ class OriginalImageViewSet(drf_viewsets.GenericViewSet, drf_mixins.ListModelMixi
         serializer = serializers.DetectedFaceSerializer(data, many=True)
         return drf_response.Response(serializer.data, status=drf_status.HTTP_200_OK)
 
+    @action(methods=["GET"], detail=True, url_path="recognition")
+    def recognition(self, request, uuid: _uuid.UUID | None = None, *args, **kwargs):
+        instance = self.get_object()
+        if instance.faces:
+            return drf_response.Response(
+                {"status": False, "detail": "Facial recognition has already been performed."},
+                status=drf_status.HTTP_200_OK,
+            )
+        tasks.face_recognition.delay(instance.id)
+        return drf_response.Response(
+            {"status": True, "detail": "Facial detection is in progress."}, status=drf_status.HTTP_200_OK
+        )
 
-class DetectedFaceViewSet(drf_viewsets.GenericViewSet, drf_mixins.ListModelMixin):
+
+class DetectedFaceViewSet(drf_viewsets.GenericViewSet, drf_mixins.ListModelMixin, drf_mixins.RetrieveModelMixin):
     queryset = models.DetectedFace.objects.all()
     serializer_class = serializers.DetectedFaceSerializer
     lookup_field = "uuid"
@@ -68,7 +82,7 @@ class DetectedFaceViewSet(drf_viewsets.GenericViewSet, drf_mixins.ListModelMixin
         return drf_response.Response(serializer.data, status=drf_status.HTTP_200_OK)
 
 
-class SimilarPersonViewSet(drf_viewsets.GenericViewSet, drf_mixins.ListModelMixin):
+class SimilarPersonViewSet(drf_viewsets.GenericViewSet, drf_mixins.ListModelMixin, drf_mixins.RetrieveModelMixin):
     queryset = models.SimilarPerson.objects.all()
     serializer_class = serializers.SimilarPersonSerializer
     lookup_field = "uuid"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-23 03:03+0600\n"
+"POT-Creation-Date: 2023-10-23 03:04+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,13 +16,10 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
-"(n%100>=11 && n%100<=14)? 2 : 3);\n"
-
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
 #: apps/common/apps.py:8
 msgid "Logging"
-msgstr "Логирование"
+msgstr ""
 
 #: apps/common/mixins/models.py:10 apps/common/mixins/models.py:23
 #: templates/web/face_detail.html:56 templates/web/face_detail.html:155
@@ -31,35 +28,35 @@ msgstr "Логирование"
 #: templates/web/original_image_detail.html:84
 #: templates/web/original_image_detail.html:141
 msgid "Created time"
-msgstr "Время создания"
+msgstr ""
 
 #: apps/common/mixins/models.py:13 apps/common/mixins/models.py:29
 msgid "Last change time"
-msgstr "Время последнего изменения"
+msgstr ""
 
 #: apps/common/mixins/models.py:33 apps/persons/admin.py:272
 #: apps/persons/models.py:104 templates/web/face_detail.html:135
 #: templates/web/index.html:48 templates/web/index.html:96
 #: templates/web/original_image_detail.html:121
 msgid "First name"
-msgstr "Имя"
+msgstr ""
 
 #: apps/common/mixins/models.py:34 apps/persons/admin.py:273
 #: apps/persons/models.py:106 templates/web/face_detail.html:145
 #: templates/web/index.html:58 templates/web/index.html:106
 #: templates/web/original_image_detail.html:131
 msgid "Last name"
-msgstr "Фамилия"
+msgstr ""
 
 #: apps/common/mixins/models.py:35 apps/persons/models.py:105
 #: templates/web/face_detail.html:140 templates/web/index.html:53
 #: templates/web/index.html:101 templates/web/original_image_detail.html:126
 msgid "Middle name"
-msgstr "Отчество"
+msgstr ""
 
 #: apps/common/mixins/models.py:46
 msgid "UUID identification"
-msgstr "UUID идентификатор"
+msgstr ""
 
 #: apps/common/models.py:7
 msgid "NotSet"
@@ -87,267 +84,264 @@ msgstr ""
 
 #: apps/common/models.py:30
 msgid "Request log"
-msgstr "Лог запроса"
+msgstr ""
 
 #: apps/common/models.py:31
 msgid "Request logs"
-msgstr "Логи запросов"
+msgstr ""
 
 #: apps/persons/admin.py:35 apps/persons/admin.py:53 apps/persons/admin.py:108
 #: apps/persons/admin.py:179 apps/persons/admin.py:235
 msgid "(No photo)"
-msgstr "(Нет фото)"
+msgstr ""
 
 #: apps/persons/admin.py:37 apps/persons/admin.py:55 apps/persons/admin.py:110
 #: apps/persons/admin.py:181 apps/persons/models.py:102
 #: templates/web/index.html:31
 msgid "Photo"
-msgstr "Фото"
+msgstr ""
 
 #: apps/persons/admin.py:121 apps/persons/admin.py:134
 #: apps/persons/admin.py:248
 msgid "(No image)"
-msgstr "(Нет изображения)"
+msgstr ""
 
 #: apps/persons/admin.py:123 apps/persons/models.py:83
 #: apps/persons/models.py:99 templates/web/face_detail.html:66
 msgid "Detected face"
-msgstr "Обнаруженное лицо"
+msgstr ""
 
 #: apps/persons/admin.py:136 apps/persons/admin.py:250
 #: apps/persons/models.py:57 apps/persons/models.py:73
 #: templates/web/face_detail.html:65
 #: templates/web/original_image_detail.html:65
 msgid "Original image"
-msgstr "Загруженное фото"
+msgstr ""
 
 #: apps/persons/admin.py:237 templates/web/index.html:69
 #: templates/web/original_image_detail.html:94
 msgid "Face"
-msgstr "Лицо"
+msgstr ""
 
 #: apps/persons/admin.py:271 templates/web/face_detail.html:130
 #: templates/web/index.html:43 templates/web/index.html:91
 #: templates/web/original_image_detail.html:116
 msgid "IIN"
-msgstr "ИИН"
+msgstr ""
 
 #: apps/persons/admin.py:274 apps/persons/models.py:103
 #: templates/web/face_detail.html:150 templates/web/index.html:111
 #: templates/web/original_image_detail.html:136
 msgid "Distance"
-msgstr "Совпадение"
+msgstr ""
 
 #: apps/persons/admin.py:280 templates/web/index.html:70
 #: templates/web/original_image_detail.html:95
 msgid "The similarest person"
-msgstr "Самый похожий человек"
+msgstr ""
 
 #: apps/persons/admin.py:340
 msgid "Face detection and recognition was started for original image: "
-msgstr "Запущено обнаружение и распознавание лиц для загруженного фото: "
+msgstr ""
 
 #: apps/persons/admin.py:342
 msgid "Run face recognition"
-msgstr "Запустить распознавание лиц"
+msgstr ""
 
 #: apps/persons/admin.py:343
 msgid "Run face recognition for the original image"
-msgstr "Запустить распознавание лиц для загруженного фото"
+msgstr ""
 
 #: apps/persons/apps.py:8
 msgid "Face recognition"
-msgstr "Распознавание лиц"
+msgstr ""
 
 #: apps/persons/models.py:18 templates/web/face_detail.html:51
 #: templates/web/face_recognition_requests.html:46
 #: templates/web/original_image_detail.html:51
 msgid "Created by"
-msgstr "Кем создано"
+msgstr ""
 
 #: apps/persons/models.py:25 apps/persons/models.py:41
 #: templates/web/face_detail.html:40 templates/web/fr_sidebar.html:16
 #: templates/web/fr_sidebar.html:39 templates/web/original_image_detail.html:40
 #: templates/web/sidebar.html:16 templates/web/sidebar.html:39
 msgid "Face recognition request"
-msgstr "Запрос на распознавание лиц"
+msgstr ""
 
 #: apps/persons/models.py:26 templates/web/header.html:24
 msgid "Face recognition requests"
-msgstr "Запросы на распознавание лиц"
+msgstr ""
 
 #: apps/persons/models.py:44 apps/persons/models.py:75
 msgid "Image"
-msgstr "Изображение"
+msgstr ""
 
 #: apps/persons/models.py:45
 msgid "Identity of result"
-msgstr "Идентификатор результата"
+msgstr ""
 
 #: apps/persons/models.py:47
 msgid "Path to results folder"
-msgstr "Путь в директорию результатов"
+msgstr ""
 
 #: apps/persons/models.py:50
 msgid "Face identities"
-msgstr "Идентификаторы лиц"
+msgstr ""
 
 #: apps/persons/models.py:58 templates/web/face_recognition_requests.html:47
 msgid "Original images"
-msgstr "Загруженные фото"
+msgstr ""
 
 #: apps/persons/models.py:76
 msgid "Face identity"
-msgstr "Идентификатор лица"
+msgstr ""
 
 #: apps/persons/models.py:84 templates/web/header.html:19
 msgid "Detected faces"
-msgstr "Обнаруженные лица"
+msgstr ""
 
 #: apps/persons/models.py:107
 msgid "Individual identification number"
-msgstr "ИИН"
+msgstr ""
 
 #: apps/persons/models.py:108
 msgid "ID number"
-msgstr "Номер уд.лич."
+msgstr ""
 
 #: apps/persons/models.py:119
 msgid "Similar person"
-msgstr "Похожая личность"
+msgstr ""
 
 #: apps/persons/models.py:120 templates/web/face_detail.html:116
 msgid "Similar persons"
-msgstr "Похожие личности"
+msgstr ""
 
 #: apps/users/__init__.py:6
 msgid "SIMPLE"
-msgstr "Обычный"
+msgstr ""
 
 #: apps/users/__init__.py:7
 msgid "MODERATORS"
-msgstr "Модераторы"
+msgstr ""
 
 #: apps/users/admin.py:19
 msgid "Personal info"
-msgstr "Личная информация"
+msgstr ""
 
 #: apps/users/admin.py:29
 msgid "Permissions"
-msgstr "Права"
+msgstr ""
 
 #: apps/users/admin.py:40
 msgid "Important dates"
-msgstr "Важные даты"
+msgstr ""
 
 #: apps/users/admin.py:66
 msgid "groups"
-msgstr "группы"
+msgstr ""
 
 #: apps/users/apps.py:8 apps/users/models.py:43
 msgid "Users"
-msgstr "Пользователи"
+msgstr ""
 
 #: apps/users/models.py:21
 msgid "Group type"
-msgstr "Тип группы"
+msgstr ""
 
 #: apps/users/models.py:28
 msgid "Group extra data"
-msgstr "Экстра данные группы"
+msgstr ""
 
 #: apps/users/models.py:29
 msgid "Group extra datas"
-msgstr "Экстра данные группы"
+msgstr ""
 
 #: apps/users/models.py:39
 msgid "Is developer"
-msgstr "Разработчик"
+msgstr ""
 
 #: apps/users/models.py:42
 msgid "User"
-msgstr "Пользователь"
+msgstr ""
 
 #: apps/web/views.py:25 templates/web/login.html:40
-#, fuzzy
-#| msgid "Change password"
 msgid "Password"
-msgstr "Сменить пароль"
+msgstr ""
 
 #: config/settings/base.py:146
 msgid "Russian language"
-msgstr "Русский язык"
+msgstr ""
 
 #: config/settings/base.py:147
 msgid "English language"
-msgstr "Английский язык"
+msgstr ""
 
 #: config/settings/base.py:148
 msgid "Kazakh language"
-msgstr "Казахский язык"
+msgstr ""
 
 #: config/settings/base.py:206
 msgid "Welcome to the SAQ"
-msgstr "Добро пожаловать в SAQ"
+msgstr ""
 
 #: config/settings/base.py:208
 msgid "TOO TNS SERVICE"
-msgstr "TOO TNS SERVICE"
+msgstr ""
 
 #: config/settings/base.py:220
 msgid "Home"
-msgstr "Главная"
+msgstr ""
 
 #: templates/admin/base.html:96 templates/web/sidebar.html:48
 msgid "Search"
-msgstr "Поиск"
+msgstr ""
 
 #: templates/admin/base.html:157
 msgid "Account"
-msgstr "Аккаунт"
+msgstr ""
 
 #: templates/admin/base.html:160
 msgid "Change password"
-msgstr "Сменить пароль"
+msgstr ""
 
 #: templates/admin/base.html:164 templates/web/header.html:56
 msgid "Log out"
-msgstr "Выйти"
+msgstr ""
 
 #: templates/admin/base.html:175
 msgid "See Profile"
-msgstr "Профайл"
+msgstr ""
 
 #: templates/admin/base.html:215
 msgid "Dashboard"
-msgstr "Панель"
+msgstr ""
 
 #: templates/admin/base.html:327
 msgid "Copyright"
-msgstr "Copyright"
+msgstr ""
 
 #: templates/admin/base.html:327
 msgid "All rights reserved."
-msgstr "Все права защищены."
+msgstr ""
 
 #: templates/admin/base.html:343
 msgid "UI Configuration"
-msgstr "UI Конфигурация"
+msgstr ""
 
 #: templates/admin/base.html:347
 msgid "Copy this info your settings file to persist these UI changes"
 msgstr ""
-"Скопируйте эту информацию в ваш файл настроек для сохранения UI изменений"
 
 #: templates/admin/base.html:351 templates/web/fr_sidebar.html:18
 #: templates/web/fr_sidebar.html:29 templates/web/sidebar.html:18
 #: templates/web/sidebar.html:29
 msgid "Close"
-msgstr "Закрыть"
+msgstr ""
 
 #: templates/registration/base.html:68
 msgid "Version 1.0.0"
-msgstr "Версия 1.0.0"
+msgstr ""
 
 #: templates/web/404.html:30
 msgid "Not found"
@@ -362,23 +356,17 @@ msgid "UUID"
 msgstr ""
 
 #: templates/web/face_detail.html:96
-#, fuzzy
-#| msgid "Face"
 msgid "Face IDs"
-msgstr "Лицо"
+msgstr ""
 
 #: templates/web/face_detail.html:106
-#, fuzzy
-#| msgid "Face"
 msgid "Face ID"
-msgstr "Лицо"
+msgstr ""
 
 #: templates/web/face_detail.html:117 templates/web/index.html:32
 #: templates/web/index.html:71 templates/web/original_image_detail.html:96
-#, fuzzy
-#| msgid "UI Configuration"
 msgid "Information"
-msgstr "UI Конфигурация"
+msgstr ""
 
 #: templates/web/face_recognition_requests.html:30
 msgid "Success"
@@ -402,33 +390,21 @@ msgid "Filter"
 msgstr ""
 
 #: templates/web/fr_sidebar.html:58 templates/web/sidebar.html:67
-#, fuzzy
-#| msgid "Important dates"
 msgid "Start date"
-msgstr "Важные даты"
+msgstr ""
 
 #: templates/web/fr_sidebar.html:64 templates/web/sidebar.html:73
 msgid "End date"
 msgstr ""
 
 #: templates/web/login.html:36
-#, fuzzy
-#| msgid "User"
 msgid "Username"
-msgstr "Пользователь"
+msgstr ""
 
 #: templates/web/login.html:43
-#, fuzzy
-#| msgid "Log out"
 msgid "Log in"
-msgstr "Выйти"
+msgstr ""
 
 #: templates/web/sidebar.html:45
 msgid "Search by IIN..."
 msgstr ""
-
-#~ msgid "Thanks for spending some quality time with the Web web today."
-#~ msgstr "Спасибо за использование сервиса."
-
-#~ msgid "Authentication and Authorization"
-#~ msgstr "Группы"

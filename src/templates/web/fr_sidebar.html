@@ -40,15 +40,6 @@
 </div>
 
 <form class="px-1 pt-1" method="get">
-    <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="form_iin" name="iin" value="{% if iin %}{{ iin }}{% endif %}">
-        <label for="form_iin" class="form-label">{% trans "Search by IIN..." %}</label>
-    </div>
-    <div class="d-grid gap-2 mb-3">
-        <button type="submit" class="btn btn-outline-primary">{% trans "Search" %}</button>
-    </div>
-
-
     <div class="accordion accordion-flush" id="accordionFlushExample">
         <div class="accordion-item">
             <h2 class="accordion-header">

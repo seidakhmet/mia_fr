@@ -2,81 +2,177 @@
 
 {% load i18n static %}
 {% block content %}
-    <div class="row">
-        <div class="col-md-3 col-sm-12">
-            {% include "web/sidebar.html" %}
-        </div>
-        <div class="col-md-9 col-sm-12">
-            <ul class="nav nav-tabs mt-3" id="myTab" role="tablist">
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="faces-tab" data-bs-toggle="tab" data-bs-target="#faces-tab-pane"
-                            type="button" role="tab" aria-controls="faces-tab-pane" aria-selected="true">
-                        {% trans "Detected faces" %}
-                    </button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="images-tab" data-bs-toggle="tab" data-bs-target="#images-tab-pane"
-                            type="button" role="tab" aria-controls="images-tab-pane" aria-selected="false">
-                        {% trans "Original images" %}
-                    </button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="requests-tab" data-bs-toggle="tab" data-bs-target="#requests-tab-pane"
-                            type="button" role="tab" aria-controls="requests-tab-pane" aria-selected="false">
-                        {% trans "Face recognition requests" %}
-                    </button>
-                </li>
-            </ul>
-            <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active" id="faces-tab-pane" role="tabpanel" aria-labelledby="faces-tab"
-                     tabindex="0">
-                    <div class="row row-cols-sm-1">
-                        {% for face in faces %}
-                            <div class="col col-md-auto">
-                                <div class="card mx-1 my-1" style="width: 20rem;">
-                                    <img src="https://167.235.199.85:20000/files/media/{{ face.image }}"
-                                         class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <ul class="list-group list-group-flush">
-                                          <li class="list-group-item h-auto">{{ face.created_at_pretty }}</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        {% endfor %}
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="images-tab-pane" role="tabpanel" aria-labelledby="images-tab"
-                     tabindex="0">
-                    <div class="row row-cols-sm-1">
-                        {% for face in images %}
-                            <div class="col col-md-auto">
-                                <div class="card mx-1 my-1" style="width: 20rem;">
-                                    <img src="https://167.235.199.85:20000/files/media/{{ face.image }}"
-                                         class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <ul class="list-group list-group-flush">
-                                          <li class="list-group-item h-auto">{{ face.created_at_pretty }}</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        {% endfor %}
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="requests-tab-pane" role="tabpanel" aria-labelledby="requests-tab"
-                     tabindex="0">
-                    <div class="row row-cols-sm-1">
-                        {% for face in faces %}
-                            <div class="col col-md-auto">
-                                {{ face.uuid }} <br>
-                                {{ face.created_at_pretty }}
-                            </div>
-                        {% endfor %}
-                    </div>
-                </div>
-            </div>
+    <main>
+        <style>
+            .image-container {
+                width: 100%; /* Ширина контейнера на 100% ширины экрана */
+                min-width: 17vw;
+                height: 20vh; /* Высота контейнера на 100% высоты экрана */
+                overflow: hidden;
+            }
 
+            .image-container img {
+                width: 100%; /* Ширина изображения на 100% ширины контейнера */
+                height: 100%; /* Высота изображения на 100% высоты контейнера */
+                object-fit: contain;
+            }
+        </style>
+        {% include "web/header.html" %}
+        <div class="row">
+            <div class="col-md-3 col-sm-12">
+                {% include "web/sidebar.html" %}
+            </div>
+            <div class="col-md-9 col-sm-12">
+                {% if person is not None %}
+                    <div class="table-responsive">
+                        <table class="table table-sm">
+                            <thead class="table-light">
+                            <tr>
+                                <th class="w-auto">{% trans "Photo" %}</th>
+                                <th class="w-100">{% trans "Information" %}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr style="border-top: 1.5px solid #000000;">
+                                <td rowspan="6">
+                                    <div class="image-container">
+                                        <img src="https://167.235.199.85:20000/udgrphotos/{{ person.id_number }}.ldr"
+                                             alt="">
+                                    </div>
+                                </td>
+                                <td><span class="fw-semibold">{% trans "IIN" %}: </span>{{ person.iin }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="fw-semibold">{% trans "First name" %}: </span>{{ person.first_name }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="fw-semibold">{% trans "Middle name" %}: </span>{{ person.middle_name }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="fw-semibold">{% trans "Last name" %}: </span>{{ person.last_name }}
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                {% else %}
+                    {% if iin %}
+                        {% trans "The person is not found" %}
+                    {% endif %}
+                {% endif %}
+                {% if items_count != 0 %}
+                    <div class="table-responsive">
+                        <table class="table table-sm">
+                            <thead class="table-light">
+                            <tr>
+                                {% if iin %}
+                                    <th class="w-auto">{% trans "Similar face" %}</th>
+                                    <th class="w-auto">{% trans "Requested person" %}</th>
+                                {% else %}
+                                    <th class="w-auto">{% trans "Face" %}</th>
+                                    <th class="w-auto">{% trans "The similarest person" %}</th>
+                                {% endif %}
+                                <th class="w-100">{% trans "Information" %}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for item in items %}
+
+                                <tr style="border-top: 1.5px solid #000000;">
+                                    <td rowspan="6">
+                                        <a href="{% url "face-detail" face_uuid=item.uuid %}">
+                                            <div class="image-container">
+                                                <img src="https://167.235.199.85:20000/files/media/{{ item.image }}"
+                                                     alt="">
+                                            </div>
+                                        </a>
+                                    </td>
+                                    <td rowspan="6">
+                                        <div class="image-container">
+                                            <img src="https://167.235.199.85:20000/udgrphotos/{{ item.id_number }}.ldr"
+                                                 alt="">
+                                        </div>
+                                    </td>
+                                    <td><span class="fw-semibold">{% trans "IIN" %}: </span>{{ item.iin }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="fw-semibold">{% trans "First name" %}: </span>{{ item.first_name }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="fw-semibold">{% trans "Middle name" %}: </span>{{ item.middle_name }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="fw-semibold">{% trans "Last name" %}: </span>{{ item.last_name }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="fw-semibold">{% trans "Distance" %}: </span>{{ item.distance }}%
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="fw-semibold">{% trans "Created time" %}: </span>{{ item.created_at_pretty }}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% endif %}
+
+                {% trans "Total count" %}: {{ items_count }}
+                {% if items_count != 0 %}
+                    <nav aria-label="...">
+                        <ul class="pagination">
+                            {% if items.has_previous %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ items.previous_page_number }}">&laquo;</a>
+                                </li>
+                            {% else %}
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#">&laquo;</a>
+                                </li>
+                            {% endif %}
+
+                            {% for i in items.paginator.page_range %}
+                                {% if i == current_page %}
+                                    <li class="page-item active" aria-current="page">
+                                        <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+                                    </li>
+                                {% else %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+                                    </li>
+                                {% endif %}
+
+                            {% endfor %}
+
+                            {% if items.has_next %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ items.paginator.num_pages }}">&raquo;</a>
+                                </li>
+                            {% else %}
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#">&raquo;</a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                {% endif %}
+            </div>
         </div>
-    </div>
+    </main>
 {% endblock %}

@@ -12,11 +12,50 @@
 
     <link rel="stylesheet" type="text/css" href="{% static "bootstrap/css/bootstrap.min.css" %}">
     <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <style>
+        @media print {
+            /* Скрыть определенную часть сайта */
+            .element-to-hide {
+                display: none;
+            }
+        }
+
+        /* Для маленьких экранов (мобильные устройства) */
+        @media (max-width: 576px) {
+            .adaptive-text {
+                font-size: 10px;
+            }
+        }
+
+        /* Для средних экранов (планшеты) */
+        @media (min-width: 577px) and (max-width: 992px) {
+            .adaptive-text {
+                font-size: 12px;
+            }
+        }
+
+        /* Для больших экранов (настольные компьютеры) */
+        @media (min-width: 993px) {
+            .adaptive-text {
+                font-size: 14px;
+            }
+        }
+
+        /* Для печати */
+        @media print {
+            .adaptive-text {
+                font-size: 10pt;
+            }
+        }
+
+        .adaptive-text {
+            font-size: 14px;
+        }
+    </style>
 </head>
-<body>
-<main>
-    {% block content %} {% endblock %}
-</main>
+
+<body class="adaptive-text">
+{% block content %} {% endblock %}
 </body>
 </html>
 

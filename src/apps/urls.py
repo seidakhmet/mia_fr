@@ -25,5 +25,12 @@ urlpatterns = [
     path("api/v1/", include(router.urls)),
     path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
-    path("", views.index, name="index"),
+    path("", views.index_view, name="index"),
+    path("face-recognition-requests", views.face_recognition_requests_view, name="face-recognition-requests"),
+    path("face-recognition", views.face_recognition_view, name="face-recognition"),
+    path("face-detail/<uuid:face_uuid>", views.face_detail_view, name="face-detail"),
+    path("image-detail/<uuid:image_uuid>", views.original_image_detail_view, name="image-detail"),
+    path("login/", views.login_view, name="login"),
+    path("logout/", views.logout_view, name="logout"),
+    path("change-password/", views.CustomPasswordChangeView.as_view(), name="password-change"),
 ]

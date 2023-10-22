@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.contrib.admin.models import LogEntry, DELETION
+from django.db import transaction
 from django.utils.html import escape, format_html
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
@@ -45,7 +46,9 @@ class ReadOnlyAdmin:
 
     def image_preview(self, obj: models.OriginalImage):
         if obj.image:
-            return format_html('<img src="{0}" style="max-height:350px; height: auto;" class="rounded" />'.format(obj.image.url))
+            return format_html(
+                '<img src="{0}" style="max-height:350px; height: auto;" class="rounded" />'.format(obj.image.url)
+            )
         else:
             return _("(No photo)")
 
@@ -225,7 +228,9 @@ class DetectedFaceAdmin(admin.ModelAdmin):
 
     def image_preview(self, obj: models.DetectedFace):
         if obj.image:
-            return format_html('<img src="{0}" style="max-height:250px; height: auto;" class="rounded"/>'.format(obj.image.url))
+            return format_html(
+                '<img src="{0}" style="max-height:250px; height: auto;" class="rounded"/>'.format(obj.image.url)
+            )
         else:
             return _("(No photo)")
 
@@ -247,7 +252,8 @@ class DetectedFaceAdmin(admin.ModelAdmin):
     def max_distance_person(self, obj: models.DetectedFace):
         if obj.persons:
             similar_person = obj.persons.first()
-            return format_html("""<a href="{url}"><div style="position: relative; width:fit-content;">
+            return format_html(
+                """<a href="{url}"><div style="position: relative; width:fit-content;">
             <img src="/udgrphotos/{id_number}.ldr" style="max-height:250px; height: 250px;" class="img-fluid mx-auto" />
             <div style="position: absolute;left: 0;bottom: 0;color:white; background:rgba(0, 0, 0, 0.5); opacity:1; width:100%;">
                 <small style="display:block;">{iin_trans}: {iin}</small>
@@ -256,17 +262,18 @@ class DetectedFaceAdmin(admin.ModelAdmin):
                 <small style="display:block;">{distance_trans}: {distance}%</small>
             </div>
             </div></a>""".format(
-                url=reverse("admin:persons_similarperson_change", args=(similar_person.id,)),
-                id_number=similar_person.id_number,
-                iin=similar_person.iin,
-                first_name=similar_person.first_name,
-                last_name=similar_person.last_name,
-                distance=similar_person.distance,
-                iin_trans=_("IIN"),
-                first_name_trans=_("First name"),
-                last_name_trans=_("Last name"),
-                distance_trans=_("Distance"),
-            ))
+                    url=reverse("admin:persons_similarperson_change", args=(similar_person.id,)),
+                    id_number=similar_person.id_number,
+                    iin=similar_person.iin,
+                    first_name=similar_person.first_name,
+                    last_name=similar_person.last_name,
+                    distance=similar_person.distance,
+                    iin_trans=_("IIN"),
+                    first_name_trans=_("First name"),
+                    last_name_trans=_("Last name"),
+                    distance_trans=_("Distance"),
+                )
+            )
         else:
             return None
 
@@ -401,6 +408,7 @@ class FaceRecognitionRequestAdmin(admin.ModelAdmin):
         obj.created_by = request.user
         obj.save()
 
+    @transaction.atomic
     def save_form(self, request, form, change):
         if form.is_valid() and not change:
             images = request.FILES.getlist("images")

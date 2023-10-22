@@ -1,0 +1,164 @@
+{% extends "web/base.html" %}
+
+{% load i18n static %}
+{% block content %}
+    <main>
+        <style>
+            .image-container-lg {
+                width: 100%; /* Ширина контейнера на 100% ширины экрана */
+                min-width: 30vw;
+                height: 40vh; /* Высота контейнера на 100% высоты экрана */
+                overflow: hidden;
+            }
+
+            .image-container-lg img {
+                width: 100%; /* Ширина изображения на 100% ширины контейнера */
+                height: 100%; /* Высота изображения на 100% высоты контейнера */
+                object-fit: contain;
+            }
+
+            .image-container {
+                width: 100%; /* Ширина контейнера на 100% ширины экрана */
+                min-width: 17vw;
+                height: 20vh; /* Высота контейнера на 100% высоты экрана */
+                overflow: hidden;
+            }
+
+            .image-container img {
+                width: 100%; /* Ширина изображения на 100% ширины контейнера */
+                height: 100%; /* Высота изображения на 100% высоты контейнера */
+                object-fit: contain;
+            }
+        </style>
+        {% include "web/header.html" %}
+        <div class="container">
+            <div class="table-responsive">
+
+                <table class="table table-sm">
+                    <thead class="table-light">
+                    <tr>
+                        <th>{% trans "Face recognition request" %}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <span class="fw-semibold">{% trans "UUID" %}: </span>{{ fr_request.uuid }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="fw-semibold">{% trans "Created by" %}: </span>{{ fr_request.created_by }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="fw-semibold">{% trans "Created time" %}: </span>{{ fr_request.created_at_pretty }}
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <table class="table table-sm">
+                    <thead class="table-light">
+                    <tr>
+                        <th>{% trans "Original image" %}</th>
+                        <th>{% trans "Detected face" %}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <div class="image-container-lg">
+                                <a href="{% url "image-detail" image_uuid=original_image.uuid %}">
+                                    <img src="https://167.235.199.85:20000/files/media/{{ original_image.image }}"
+                                         alt="">
+                                </a>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="image-container-lg">
+                                <img src="https://167.235.199.85:20000/files/media/{{ face.image }}"
+                                     alt="">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="fw-semibold">{% trans "UUID" %}: </span>{{ original_image.uuid }}
+                        </td>
+                        <td>
+                            <span class="fw-semibold">{% trans "UUID" %}: </span>{{ face.uuid }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="fw-semibold">{% trans "Face IDs" %}: </span>
+                            [{% for item in image_faces %}
+                            {% if item.id != face.id %}
+                                <a href="{% url "face-detail" face_uuid=item.uuid %}">{{ item.face_id }}</a>
+                            {% else %}
+                                {{ item.face_id }}
+                            {% endif %}
+                        {% endfor %}]
+                        </td>
+                        <td>
+                            <span class="fw-semibold">{% trans "Face ID" %}: </span>{{ face.face_id }}
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-sm">
+                    <thead class="table-light">
+                    <tr>
+                        <th class="w-auto">{% trans "Similar persons" %}</th>
+                        <th class="w-100">{% trans "Information" %}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for person in persons %}
+
+                        <tr style="border-top: 1.5px solid #000000;">
+                            <td rowspan="6">
+                                <div class="image-container">
+                                    <img src="https://167.235.199.85:20000/udgrphotos/{{ person.id_number }}.ldr"
+                                         alt="">
+                                </div>
+                            </td>
+                            <td><span class="fw-semibold">{% trans "IIN" %}: </span>{{ person.iin }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="fw-semibold">{% trans "First name" %}: </span>{{ person.first_name }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="fw-semibold">{% trans "Middle name" %}: </span>{{ person.middle_name }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="fw-semibold">{% trans "Last name" %}: </span>{{ person.last_name }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="fw-semibold">{% trans "Distance" %}: </span>{{ person.distance }}%
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="fw-semibold">{% trans "Created time" %}: </span>{{ person.created_at_pretty }}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+{% endblock %}

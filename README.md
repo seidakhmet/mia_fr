@@ -27,5 +27,10 @@ RABBIT_PORT=5672  # Порт RAbbitMQ
 DS_HOST=111.111.0.1  # IP адрес аналитической системы (здесь внутри идёт своя сеть с настройкой ipam subnet 111.111.0.0/24)
 DS_PORT=8889  # Порт аналитической системы
 DJANGO_SETTINGS_MODULE=config.settings.production  # Режим запуска приложения (по умолчанию production, для дебага development)
+FR_DB_NAME=**FR_DB_NAME**  # Наименование базы данных с ФЛ 
+FR_DB_USER=**FR_DB_USER**  # Пользователь базы данных с ФЛ
+FR_DB_PASSWORD=**FR_DB_PASSWORD**  # Пароль пользователя базы данных с ФЛ
+FR_DB_HOST=**FR_DB_HOST**  # IP адрес базы данных с ФЛ
+FR_DB_PORT=**FR_DB_PORT**  # Порт базы данных с ФЛ
 ```
  

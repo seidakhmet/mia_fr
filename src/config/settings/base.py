@@ -151,7 +151,7 @@ LANGUAGE_CODE = "ru-ru"
 LANGUAGES = (
     ("ru-ru", _("Russian language")),
     ("en-us", _("English language")),
-    # ("kz-kk", _("Kazakh language")),
+    ("kk-kz", _("Kazakh language")),
 )
 
 TIME_ZONE = "Asia/Almaty"

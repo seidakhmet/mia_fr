@@ -36,7 +36,7 @@
                             <tr style="border-top: 1.5px solid #000000;">
                                 <td rowspan="6">
                                     <div class="image-container">
-                                        <img src="https://167.235.199.85:20000/udgrphotos/{{ person.id_number }}.ldr"
+                                        <img src="/udgrphotos/{{ person.id_number }}.ldr"
                                              alt="">
                                     </div>
                                 </td>
@@ -88,14 +88,14 @@
                                     <td rowspan="6">
                                         <a href="{% url "face-detail" face_uuid=item.uuid %}">
                                             <div class="image-container">
-                                                <img src="https://167.235.199.85:20000/files/media/{{ item.image }}"
+                                                <img src="/files/media/{{ item.image }}"
                                                      alt="">
                                             </div>
                                         </a>
                                     </td>
                                     <td rowspan="6">
                                         <div class="image-container">
-                                            <img src="https://167.235.199.85:20000/udgrphotos/{{ item.id_number }}.ldr"
+                                            <img src="/udgrphotos/{{ item.id_number }}.ldr"
                                                  alt="">
                                         </div>
                                     </td>

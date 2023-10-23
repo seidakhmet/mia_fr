@@ -71,14 +71,14 @@
                         <td>
                             <div class="image-container-lg">
                                 <a href="{% url "image-detail" image_uuid=original_image.uuid %}">
-                                    <img src="https://167.235.199.85:20000/files/media/{{ original_image.image }}"
+                                    <img src="/files/media/{{ original_image.image }}"
                                          alt="">
                                 </a>
                             </div>
                         </td>
                         <td>
                             <div class="image-container-lg">
-                                <img src="https://167.235.199.85:20000/files/media/{{ face.image }}"
+                                <img src="/files/media/{{ face.image }}"
                                      alt="">
                             </div>
                         </td>
@@ -123,7 +123,7 @@
                         <tr style="border-top: 1.5px solid #000000;">
                             <td rowspan="6">
                                 <div class="image-container">
-                                    <img src="https://167.235.199.85:20000/udgrphotos/{{ person.id_number }}.ldr"
+                                    <img src="/udgrphotos/{{ person.id_number }}.ldr"
                                          alt="">
                                 </div>
                             </td>

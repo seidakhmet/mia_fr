@@ -189,6 +189,7 @@ def index_view(request):
 @login_required(login_url="login")
 def original_image_detail_view(request, image_uuid: uuid.UUID):
     queryset = OriginalImage.objects.filter(request__created_by=request.user)
+    message = request.GET.get("message", None)
     image = queryset.filter(uuid=image_uuid).first()
     if image is None:
         return render(
@@ -220,8 +221,30 @@ def original_image_detail_view(request, image_uuid: uuid.UUID):
     return render(
         request,
         "web/original_image_detail.html",
-        context={"original_image": image, "fr_request": image.request, "items": items},
+        context={"original_image": image, "fr_request": image.request, "items": items, "message": message},
     )
+
+
+@login_required(login_url="login")
+def original_image_run_face_recognition_view(request, image_uuid: uuid.UUID):
+    queryset = OriginalImage.objects.filter(request__created_by=request.user)
+    image = queryset.filter(uuid=image_uuid).first()
+    if image is None:
+        return render(
+            request,
+            "web/404.html",
+        )
+    if len(image.faces.all()) > 0:
+        redirect_url = (
+            reverse("image-detail", kwargs={"image_uuid": image.uuid})
+            + f"?message={_('Face recognition has already been performed.')}"
+        )
+        return redirect(redirect_url)
+    tasks.face_recognition.delay(image.id)
+    redirect_url = (
+        reverse("image-detail", kwargs={"image_uuid": image.uuid}) + f"?message={_('Face recognition is in progress.')}"
+    )
+    return redirect(redirect_url)
 
 
 @login_required(login_url="login")

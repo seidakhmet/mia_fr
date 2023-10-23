@@ -479,3 +479,9 @@ msgstr "Поиск по ИИН..."
 
 msgid "Face recognition request created."
 msgstr "Запрос на распознание лиц создан."
+
+msgid "Face recognition has already been performed."
+msgstr "Распознание лиц уже произведено."
+
+msgid "Face recognition is in progress."
+msgstr "Распознание лиц запустилось."

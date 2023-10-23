@@ -30,6 +30,11 @@ urlpatterns = [
     path("face-recognition", views.face_recognition_view, name="face-recognition"),
     path("face-detail/<uuid:face_uuid>", views.face_detail_view, name="face-detail"),
     path("image-detail/<uuid:image_uuid>", views.original_image_detail_view, name="image-detail"),
+    path(
+        "image-detail/<uuid:image_uuid>/run-recognition",
+        views.original_image_run_face_recognition_view,
+        name="image-recognition",
+    ),
     path("login/", views.login_view, name="login"),
     path("logout/", views.logout_view, name="logout"),
     path("change-password/", views.CustomPasswordChangeView.as_view(), name="password-change"),

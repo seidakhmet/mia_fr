@@ -32,8 +32,13 @@
         </style>
         {% include "web/header.html" %}
         <div class="container">
+            {% if message %}
+                <div class="alert alert-info alert-dismissible fade show" role="alert">
+                    <strong>{% trans "Info" %}!</strong> {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endif %}
             <div class="table-responsive">
-
                 <table class="table table-sm">
                     <thead class="table-light">
                     <tr>
@@ -87,64 +92,70 @@
                     </tbody>
                 </table>
             </div>
-            <div class="table-responsive">
-                <table class="table table-sm">
-                    <thead class="table-light">
-                    <tr>
-                        <th class="w-auto">{% trans "Face" %}</th>
-                        <th class="w-auto">{% trans "The similarest person" %}</th>
-                        <th class="w-100">{% trans "Information" %}</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for item in items %}
+            {% if items %}
+                <div class="table-responsive">
+                    <table class="table table-sm">
+                        <thead class="table-light">
+                        <tr>
+                            <th class="w-auto">{% trans "Face" %}</th>
+                            <th class="w-auto">{% trans "The similarest person" %}</th>
+                            <th class="w-100">{% trans "Information" %}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for item in items %}
 
-                        <tr style="border-top: 1.5px solid #000000;">
-                            <td rowspan="6">
-                                <a href="{% url "face-detail" face_uuid=item.uuid %}">
+                            <tr style="border-top: 1.5px solid #000000;">
+                                <td rowspan="6">
+                                    <a href="{% url "face-detail" face_uuid=item.uuid %}">
+                                        <div class="image-container">
+                                            <img src="/files/media/{{ item.image }}" alt="">
+                                        </div>
+                                    </a>
+                                </td>
+                                <td rowspan="6">
                                     <div class="image-container">
-                                        <img src="/files/media/{{ item.image }}" alt="">
+                                        <img src="/udgrphotos/{{ item.id_number }}.ldr"
+                                             alt="">
                                     </div>
-                                </a>
-                            </td>
-                            <td rowspan="6">
-                                <div class="image-container">
-                                    <img src="/udgrphotos/{{ item.id_number }}.ldr"
-                                         alt="">
-                                </div>
-                            </td>
-                            <td><span class="fw-semibold">{% trans "IIN" %}: </span>{{ item.iin }}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="fw-semibold">{% trans "First name" %}: </span>{{ item.first_name }}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="fw-semibold">{% trans "Middle name" %}: </span>{{ item.middle_name }}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="fw-semibold">{% trans "Last name" %}: </span>{{ item.last_name }}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="fw-semibold">{% trans "Distance" %}: </span>{{ item.distance }}%
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="fw-semibold">{% trans "Created time" %}: </span>{{ item.created_at_pretty }}
-                            </td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-            </div>
+                                </td>
+                                <td><span class="fw-semibold">{% trans "IIN" %}: </span>{{ item.iin }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="fw-semibold">{% trans "First name" %}: </span>{{ item.first_name }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="fw-semibold">{% trans "Middle name" %}: </span>{{ item.middle_name }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="fw-semibold">{% trans "Last name" %}: </span>{{ item.last_name }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="fw-semibold">{% trans "Distance" %}: </span>{{ item.distance }}%
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="fw-semibold">{% trans "Created time" %}: </span>{{ item.created_at_pretty }}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <a class="btn btn-outline-danger" href="{% url "image-recognition" image_uuid=original_image.uuid %}">
+                    {% trans "Run face recognition" %}
+                </a>
+            {% endif %}
         </div>
     </main>
 {% endblock %}

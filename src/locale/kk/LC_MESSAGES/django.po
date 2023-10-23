@@ -443,3 +443,9 @@ msgstr "ЖСН бойынша іздеу"
 
 msgid "Face recognition request created."
 msgstr "Бетті анықтау сұранысы жасалды."
+
+msgid "Face recognition has already been performed."
+msgstr "Бұл суреттен бетті анықтау жасалған."
+
+msgid "Face recognition is in progress."
+msgstr "Бетті анықтау басталды."

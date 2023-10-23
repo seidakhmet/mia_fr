@@ -476,3 +476,6 @@ msgstr "Поиск по ИИН..."
 
 #~ msgid "Authentication and Authorization"
 #~ msgstr "Группы"
+
+msgid "Face recognition request created."
+msgstr "Запрос на распознание лиц создан."

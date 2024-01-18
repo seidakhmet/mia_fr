@@ -402,7 +402,7 @@ class FaceRecognitionRequestAdmin(admin.ModelAdmin):
 
     # Inlines
     def get_inlines(self, request, obj=None):
-        if obj:
+        if obj and obj.images.all().count() > 0:
             return [OriginalImageInline]
         else:
             return []

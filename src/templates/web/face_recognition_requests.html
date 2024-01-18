@@ -54,7 +54,7 @@
                                 <td>{{ item.uuid }}</td>
                                 <td>{{ item.created_at_pretty }}</td>
                                 <td>{{ item.created_by }}</td>
-                                <td>{{ item.description }}</td>
+                                <td>{{ item.description or "-" }}</td>
                                 <td>
                                     {% for image in item.images.all %}
                                         <a href="{% url "image-detail" image_uuid=image.uuid %}">

@@ -395,7 +395,7 @@ class FaceRecognitionRequestAdmin(admin.ModelAdmin):
             (
                 None,
                 {
-                    "fields": ["uuid", "created_by", "created_at", "description", "images"],
+                    "fields": ["uuid", "created_by", "created_at", "description", "files"],
                 },
             ),
         ]

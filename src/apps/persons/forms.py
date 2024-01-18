@@ -16,6 +16,8 @@ class MultipleFileField(forms.FileField):
 
     def clean(self, data, initial=None):
         single_file_clean = super().clean
+        if not data or len(data) == 0:
+            raise forms.ValidationError(_("No files selected."))
         if isinstance(data, (list, tuple)):
             result = [single_file_clean(d, initial) for d in data]
         else:

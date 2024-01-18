@@ -24,7 +24,7 @@ class MultipleFileField(forms.FileField):
 
 
 class FaceRecognitionRequestAddForm(forms.ModelForm):
-    images = MultipleFileField(
+    files = MultipleFileField(
         required=True,
         validators=[FileExtensionValidator(allowed_extensions=["jpg", "png", "jpeg"])],
         label=_("Images"),

@@ -389,6 +389,7 @@ class FaceRecognitionRequestAdmin(admin.ModelAdmin):
                     "created_by",
                     "created_at",
                     "description",
+                    "images",
                 ],
             },
         ),

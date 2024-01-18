@@ -455,3 +455,6 @@ msgstr "Суреттер"
 
 msgid "Description"
 msgstr "Сипаттама"
+
+msgid "No files selected."
+msgstr "Сурет таңдалмаған."

@@ -64,7 +64,7 @@ services:
   api:
     <<: *base-mia-fr
     container_name: mia_fr_api
-    command: gunicorn config.server.wsgi:application --bind 0.0.0.0:8003 --log-level debug
+    command: gunicorn config.server.wsgi:application --bind 0.0.0.0:8003 --workers 4 --log-level=info
     environment:
       <<: *base-environtment
     networks:

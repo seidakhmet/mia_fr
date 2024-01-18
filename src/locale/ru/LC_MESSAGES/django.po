@@ -488,3 +488,6 @@ msgstr "Изображения"
 
 msgid "Description"
 msgstr "Описание"
+
+msgid "No files selected."
+msgstr "Файлы не выбраны."

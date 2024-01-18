@@ -36,7 +36,7 @@ class FaceRecognitionRequestAddForm(forms.Form):
     )
 
     class Meta:
-        model = models.FaceRecognitionRequest
+        # model = models.FaceRecognitionRequest
         fields = [
             "images",
             "description",

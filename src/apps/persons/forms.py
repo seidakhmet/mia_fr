@@ -23,8 +23,8 @@ class MultipleFileField(forms.FileField):
         return result
 
 
-class FaceRecognitionRequestAddForm(forms.Form):
-    images = MultipleFileField(
+class FaceRecognitionRequestAddForm(forms.ModelForm):
+    files = MultipleFileField(
         required=True,
         validators=[FileExtensionValidator(allowed_extensions=["jpg", "png", "jpeg"])],
         label=_("Images"),
@@ -36,8 +36,8 @@ class FaceRecognitionRequestAddForm(forms.Form):
     )
 
     class Meta:
-        # model = models.FaceRecognitionRequest
+        model = models.FaceRecognitionRequest
         fields = [
-            "images",
+            "files",
             "description",
         ]

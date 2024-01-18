@@ -382,7 +382,7 @@ class FaceRecognitionRequestAdmin(admin.ModelAdmin):
     )
 
     def get_fieldsets(self, request, obj=None):
-        if obj and obj.images.all().count() > 0:
+        if obj:
             return [
                 (
                     None,

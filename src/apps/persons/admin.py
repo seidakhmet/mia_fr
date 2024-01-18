@@ -431,6 +431,8 @@ class FaceRecognitionRequestAdmin(admin.ModelAdmin):
     def save_form(self, request, form, change):
         if form.is_valid() and not change:
             images = request.FILES.getlist("files")
+            print(f"images count: {len(images)}")
+            print(f"images: {images}")
             response = form.save(commit=True)
             for image in images:
                 original_image = models.OriginalImage.objects.create(image=image, request_id=response.pk)

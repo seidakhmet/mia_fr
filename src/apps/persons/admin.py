@@ -380,6 +380,19 @@ class FaceRecognitionRequestAdmin(admin.ModelAdmin):
         "created_at",
         "created_by",
     )
+    fieldsets = [
+        (
+            None,
+            {
+                "fields": [
+                    "uuid",
+                    "created_by",
+                    "created_at",
+                    "description",
+                ],
+            },
+        ),
+    ]
 
     def get_queryset(self, request):
         if request.user.is_superuser:

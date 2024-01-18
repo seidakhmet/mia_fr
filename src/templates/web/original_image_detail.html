@@ -63,7 +63,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <span class="fw-semibold">{% trans "Description" %}: </span>{{ fr_request.description or "-" }}
+                            <span class="fw-semibold">{% trans "Description" %}: </span>{{ fr_request.description|default:"-" }}
                         </td>
                     </tr>
                     </tbody>

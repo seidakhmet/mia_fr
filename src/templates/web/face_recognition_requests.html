@@ -44,6 +44,7 @@
                             <th class="w-auto">{% trans "UUID" %}</th>
                             <th class="w-auto">{% trans "Created time" %}</th>
                             <th class="w-auto">{% trans "Created by" %}</th>
+                            <th class="w-auto">{% trans "Description" %}</th>
                             <th class="w-100">{% trans "Original images" %}</th>
                         </tr>
                         </thead>
@@ -53,6 +54,7 @@
                                 <td>{{ item.uuid }}</td>
                                 <td>{{ item.created_at_pretty }}</td>
                                 <td>{{ item.created_by }}</td>
+                                <td>{{ item.description }}</td>
                                 <td>
                                     {% for image in item.images.all %}
                                         <a href="{% url "image-detail" image_uuid=image.uuid %}">

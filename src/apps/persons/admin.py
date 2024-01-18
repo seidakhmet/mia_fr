@@ -419,6 +419,9 @@ class FaceRecognitionRequestAdmin(admin.ModelAdmin):
 
         return form.save(commit=False)
 
+    def has_change_permission(self, *args, **kwargs):
+        return False
+
 
 @admin.register(LogEntry)
 class LogEntryAdmin(admin.ModelAdmin):

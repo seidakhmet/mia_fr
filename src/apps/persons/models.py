@@ -13,6 +13,8 @@ class FaceRecognitionRequest(mixin_models.UUIDModel, mixin_models.TimestampModel
 
     id: int
 
+    description: str = models.TextField(null=True, blank=False, verbose_name=_("Description"))
+
     created_by_id: int
     created_by: User = models.ForeignKey(
         User, on_delete=models.SET_NULL, null=True, blank=True, verbose_name=_("Created by")

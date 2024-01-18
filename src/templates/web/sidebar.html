@@ -24,6 +24,12 @@
                         <input class="form-control" type="file" id="formFileMultiple" accept="image/*" name="images"
                                multiple required>
                     </div>
+                    <div class="mb-3">
+                        <label for="formDescription"
+                               class="form-label">{% trans "Description" %}</label>
+                        <textarea class="form-control" rows="5" id="formDescription" name="description"
+                                  required></textarea>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans "Close" %}</button>

@@ -1,5 +1,6 @@
 from django import forms
 from django.core.validators import FileExtensionValidator
+from django.utils.translation import gettext_lazy as _
 
 from . import models
 
@@ -23,10 +24,20 @@ class MultipleFileField(forms.FileField):
 
 
 class FaceRecognitionRequestAddForm(forms.ModelForm):
-    images = MultipleFileField(required=True, validators=[FileExtensionValidator(allowed_extensions=["jpg", "png"])])
+    images = MultipleFileField(
+        required=True,
+        validators=[FileExtensionValidator(allowed_extensions=["jpg", "png", "jpeg"])],
+        label=_("Images"),
+    )
+    description = forms.CharField(
+        required=True,
+        widget=forms.Textarea,
+        label=_("Description"),
+    )
 
     class Meta:
         model = models.FaceRecognitionRequest
         fields = [
             "images",
+            "description",
         ]

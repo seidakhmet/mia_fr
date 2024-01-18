@@ -426,9 +426,6 @@ msgstr "Отправить"
 msgid "Filter"
 msgstr "Фильтр"
 
-#: templates/web/fr_sidebar.html:58 templates/web/sidebar.html:67
-#, fuzzy
-#| msgid "Important dates"
 msgid "Start date"
 msgstr "Дата от"
 
@@ -485,3 +482,9 @@ msgstr "Распознание лиц уже произведено."
 
 msgid "Face recognition is in progress."
 msgstr "Распознание лиц запустилось."
+
+msgid "Images"
+msgstr "Изображения"
+
+msgid "Description"
+msgstr "Описание"

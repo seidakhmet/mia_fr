@@ -449,3 +449,9 @@ msgstr "Бұл суреттен бетті анықтау жасалған."
 
 msgid "Face recognition is in progress."
 msgstr "Бетті анықтау басталды."
+
+msgid "Images"
+msgstr "Суреттер"
+
+msgid "Description"
+msgstr "Сипаттама"

@@ -49,7 +49,7 @@ class FaceRecognitionRequestSerializer(drf_serializers.ModelSerializer):
 
     class Meta:
         model = models.FaceRecognitionRequest
-        fields = ("uuid", "created_at", "uploaded_images")
+        fields = ("uuid", "created_at", "uploaded_images", "description")
 
     @transaction.atomic
     def create(self, validated_data):
